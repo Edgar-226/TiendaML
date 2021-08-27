@@ -38,28 +38,3 @@ async function getMercadoLibre() {
 
 getMercadoLibre()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 2e20349a9ea59d73ec5bc546da176d5187142fb0
