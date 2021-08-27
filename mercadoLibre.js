@@ -1,42 +1,52 @@
-
-///Acceder a la lista de categorias
-// async function getMercadoLibre() {
-//     let url = "https://api.mercadolibre.com/sites/MLM/categories";
-//     let resp = await fetch(url);
-
-//     const data = await resp.json();
-//     console.log(data);
-
-// }
-
-
-// Accede a los mas vendidos de una categoria {
-//   "id": "MLM1039",
-//   "name": "Cámaras y Accesorios"
-//}
-
-//https://auth.mercadolibre.com.mx/authorization?response_type=901&client_id=$7671715030088705
+//Busueda General
+//https://api.mercadolibre.com/sites/MLM/search?q=Motorola%20G6
+//Busqueda por categoria
+//https://api.mercadolibre.com/sites/MLM/search?category=MLM1039
+//Busqueda por id
+//
 
 async function getMercadoLibre() {
-    // let url = "'Authorization: Bearer $ACCESS_TOKEN' https://api.mercadolibre.com/highlights/MLM/category/MLM1039";
-    let url = "https://auth.mercadolibre.com.mx/authorization?response_type=code&client_id=$7671715030088705&redirect_uri=$https://www.mercadolibre.com.mx/";
-    let resp = await fetch(url);
 
-    const data = await resp.json();
-    console.log(data);
+  let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1039";
+  let resp = await fetch(url);
+
+  const data = await resp.json();
+  console.log(data['results'][0]);
+
+  
+
+
+
+
+  let producto = `
+    <div class="card" style="width: 18rem;">
+      <img src=${data['results'][0]['thumbnail']} class="card-img-top"
+      alt="...">
+      <div class="card-body">
+        <h5 class="card-title">${data['results'][0]['title']}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>`
+
+
+  let productoHTML = document.createElement('div');
+  productoHTML.innerHTML += producto;
+  document.getElementById('caja').appendChild(productoHTML);
 
 }
 
-async function CreatePoke(a) {
-    let ctn = document.createElement('div');
-    let nombre = document.createElement('h2');
-    nombre.textContent = `${this.data.name} #${this.data.id}`;
-    let img = document.createElement('img');
-    img.setAttribute('src', this.data.sprites.front_default);
-    ctn.appendChild(nombre);
-    ctn.appendChild(img);
-    pokeDiv.appendChild(ctn);
-}
+getMercadoLibre()
 
 
-getMercadoLibre();
+
+
+
+
+
+
+
+
+
+
+
