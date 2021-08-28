@@ -15,7 +15,7 @@ async function mostrarEnPagina (idProducto){
 
 
   let producto = `
-  <div class="card" style="width: 18rem;">
+  <div class="card p-3 border bg-light" style="width: 18rem;">
     <img src=${data['pictures'][0]['url']} class="card-img-top"
     alt="...">
     <div class="card-body">
@@ -28,6 +28,7 @@ async function mostrarEnPagina (idProducto){
 
 
 let productoHTML = document.createElement('div');
+productoHTML.classList.add('p-3', 'border', 'bg-light')
 
 productoHTML.innerHTML += producto;
 document.getElementById('caja').appendChild(productoHTML);
