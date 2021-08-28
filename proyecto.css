@@ -370,3 +370,12 @@ footer span a {
   border-radius: 50%;
   display: inline-block;
 }
+
+.card {
+  
+  padding-bottom: 10px 10px;
+}
+
+.contenedor-producto {
+  background-color: #adb5bd;
+}

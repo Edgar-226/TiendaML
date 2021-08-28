@@ -15,7 +15,7 @@ async function mostrarEnPagina (idProducto){
 
 
   let producto = `
-  <div class="card p-3 border bg-light" style="width: 18rem;">
+  <div class="card " style="justify-content: center;">
     <img src=${data['pictures'][0]['url']} class="card-img-top"
     alt="...">
     <div class="card-body">
@@ -28,7 +28,7 @@ async function mostrarEnPagina (idProducto){
 
 
 let productoHTML = document.createElement('div');
-productoHTML.classList.add('p-3', 'border', 'bg-light')
+productoHTML.classList.add('contenedor-producto', 'col-6', 'col-sm-3', 'p-3', 'border' , 'bg-light')
 
 productoHTML.innerHTML += producto;
 document.getElementById('caja').appendChild(productoHTML);
@@ -38,7 +38,7 @@ document.getElementById('caja').appendChild(productoHTML);
 
 async function getMercadoLibre() {
 
-  let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=10";
+  let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=12";
   let resp = await fetch(url);
 
   const data = await resp.json();
