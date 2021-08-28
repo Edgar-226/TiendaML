@@ -15,20 +15,20 @@ async function mostrarEnPagina (idProducto){
 
 
   let producto = `
-  <div class="card " style="justify-content: center;">
+  <div class="contenido-producto" style="justify-content: center;">
     <img src=${data['pictures'][0]['url']} class="card-img-top"
     alt="...">
     <div class="card-body">
       <h5 class="card-title">${data['title']}</h5>
       <p class="card-text">Precio $${data['price']}</p>
-      <a href="#" class="btn btn-primary">Comprar</a>
+      
       <a href="#" class="btn btn-primary">Agregar al Carrito</a>
     </div>
   </div>`
 
 
 let productoHTML = document.createElement('div');
-productoHTML.classList.add('contenedor-producto', 'col-6', 'col-sm-3', 'p-3', 'border' , 'bg-light')
+productoHTML.classList.add('contenedor-producto', 'col-6', 'col-sm-3', 'p-3', 'border' , 'Secondary')
 
 productoHTML.innerHTML += producto;
 document.getElementById('caja').appendChild(productoHTML);

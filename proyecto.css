@@ -374,8 +374,27 @@ footer span a {
 .card {
   
   padding-bottom: 10px 10px;
+  border: none;
+}
+
+.card-title {
+  font-weight: bold;
+}
+.card-text {
+  font-weight:initial;
+}
+
+
+.caja {
+  display: flex;
+  justify-content: space-around;
+  border: none;
+  background-color: lightblue;
 }
 
 .contenedor-producto {
-  background-color: #adb5bd;
+  
+  
+  border: none;
 }
+
