@@ -370,3 +370,39 @@ footer span a {
   border-radius: 50%;
   display: inline-block;
 }
+
+.card {
+  
+  padding-bottom: 10px 10px;
+  border: none;
+}
+
+.card-title {
+  font-weight: bold;
+}
+.card-text {
+  font: weight 1500px;;
+  color: #028090;
+}
+
+
+.caja {
+  display: flex;
+  justify-content: space-around;
+  border: none;
+  background-color: lightblue;
+}
+
+.contenedor-producto {
+  
+  
+  border: none;
+}
+
+.total-carrito{
+  font-size: 35px;
+}
+
+.carrito:hover {
+  cursor: pointer;
+}
