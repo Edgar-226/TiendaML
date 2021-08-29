@@ -31,8 +31,8 @@ const carrito = new ShoppingCart('Carrito');
 
 
 
-function addcarrito(nombeProducto, precioProducto, urlImgProducto) {
-  producto = [nombeProducto, precioProducto, urlImgProducto]
+function addcarrito(nombreProducto, precioProducto, urlImgProducto) {
+  producto = [nombreProducto, precioProducto, urlImgProducto]
   carrito.addArticle(producto)
   total = carrito.getTotal();
 
