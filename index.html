@@ -43,7 +43,7 @@
                 <div class="row">
                     <article class="col-lg-3 col-md-4 col-sm-12">
                         <div class="header-logo">
-                            <a href="home.html"><img src="img/logocam.JPG" style=width:82% alt=""></a>
+                            <a href="index.html"><img src="img/logocam.JPG" style=width:82% alt=""></a>
                         </div>
                     </article>
                     <article class="col-lg-6 col-md-4 col-sm-12">
@@ -80,10 +80,34 @@
 
 
                         <div class="header-nav-option">
-                            <a href="#"><img src="img/search.png" alt=""></a>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search"
+                                    width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#009988"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <circle cx="10" cy="10" r="7" />
+                                    <line x1="21" y1="21" x2="15" y2="15" />
+                                </svg>
+                                <a href="#"><img src="img/search.png" alt=""></a>
+                            </div>
                             <a href="#"><img src="img/heart.png" alt=""></a>
-                            <a href="#"><img src="img/cart.png" alt=""> <span>0</span></a>
-                            <div class="price">$0.00</div>
+                            <div>
+
+                                <a href="#"><img src="img/cart.png" alt=""> <span></span></a>
+                            </div>
+                            <div class="price" style="display: flex; align-items: center;">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-shopping-cart" width="100" height="100"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="#009988" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <circle cx="6" cy="19" r="2" />
+                                    <circle cx="17" cy="19" r="2" />
+                                    <path d="M17 17h-11v-14h-2" />
+                                    <path d="M6 5l14 1l-1 7h-13" />
+                                </svg>
+                                <p id="total-carrito" class="total-carrito"> $0.00 </p>
+                            </div>
                         </div>
                     </article>
                 </div>
@@ -331,7 +355,8 @@
             <a href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i></a>
         </span>
     </footer>
-    <script src="mercadoLibre.js"></script>
+    <!-- <script src="mercadoLibre.js"></script> -->
+    <script src="index.js"></script>
 
 </body>
 
