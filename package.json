@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Edgar-226/TiendaML/issues"
   },
-  "homepage": "https://github.com/Edgar-226/TiendaML#readme"
+  "homepage": "https://github.com/Edgar-226/TiendaML#readme",
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
 }
