@@ -30,9 +30,6 @@ class ShoppingCart {
 
 const carrito = new ShoppingCart('Carrito');
 
-
-
-
 function addcarrito(nombreProducto, precioProducto, urlImgProducto) {
   producto = [nombreProducto, precioProducto, urlImgProducto]
   carrito.addArticle(producto)
@@ -45,6 +42,7 @@ function addcarrito(nombreProducto, precioProducto, urlImgProducto) {
   //console.log(carrito);
 
   totalHTML.textContent = '$' + total.toFixed(2);
+  sessionStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 function saludo() {
@@ -90,10 +88,33 @@ async function mostrarEnPagina(idProducto) {
   productoHTML.innerHTML += producto;
   document.getElementById('caja').appendChild(productoHTML);
 
+
+}
+
+function mostrarCarrito(nombre, precio, imagen) {
+  let producto = `
+  <div class="contenido-producto" style="justify-content: center;">
+    <img src="${imagen}" class="card-img-top"
+    alt="...">
+    <div class="card-body">
+      <h5 class="card-title">${nombre}</h5>
+      <p class="card-text">$${precio.toFixed(2)}</p>
+      
+      <button class="btn btn-primary" onclick="saludo()">Eliminar</button>
+    </div>
+  </div>`
+
+
+  let productoHTML = document.createElement('div');
+  productoHTML.classList.add('contenedor-producto', 'col-6', 'col-sm-3', 'p-3', 'border', 'Secondary')
+
+  productoHTML.innerHTML += producto;
+  document.getElementById('productosCarrito').appendChild(productoHTML);
 }
 
 
 async function getMercadoLibre() {
+  console.log('hi')
 
   let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=12";
   let resp = await fetch(url);
@@ -114,9 +135,75 @@ async function getMercadoLibre() {
 }
 getMercadoLibre()
 
-function irCarrito () {
-  console.log(carrito)
-  compactada=urlencode(carrito);
-  console.log(compactada);
-  
+function irCarrito() {
+  guardarCarrito()
+  window.location.href = "./carrito.html";
+  obtenerCarrito();
 }
+
+function obtenerCarrito() {
+  rercuperarCarrito();
+  console.log(carrito);
+
+  // console.log(total);
+  //
+  // //console.log('$', total)
+
+  // var totalHTML = document.getElementById('total-carrito');
+
+  // // //console.log(carrito);
+
+  // totalHTML.textContent = '$' + total.toFixed(2);
+}
+
+function setTotal() {
+  rercuperarCarrito();
+  var totalHTML = document.getElementById('total-carrito');
+  total = carrito.getTotal()
+  totalHTML.textContent = '$' + total.toFixed(2);
+}
+
+function guardarCarrito() {
+  sessionStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function rercuperarCarrito() {
+  carritoRec = JSON.parse(sessionStorage.getItem('carrito'))
+
+  console.log(carritoRec);
+  if (carrito['total'] == 0) {
+    for (let i = 0; i < carritoRec['articles'].length; i++) {
+      carrito.addArticle(carritoRec['articles'][i])
+      total = carrito.getTotal()
+      console.log(carrito)
+    }
+  }
+
+}
+
+function colocarTotal() {
+  //console.log(carrito.getTotal())
+  rercuperarCarrito();
+
+
+  //
+  for (let i = 0; i < carrito['articles'].length; i++) {
+    mostrarCarrito(carrito['articles'][i][0], carrito['articles'][i][1], carrito['articles'][i][2])
+    total = carrito.getTotal()
+    console.log(carrito)
+  }
+  var totalHTML = document.getElementById('total-carrito');
+  total = carrito.getTotal()
+  totalHTML.textContent = '$' + total.toFixed(2);
+
+  setTotal();
+
+
+
+}
+rercuperarCarrito();
+colocarTotal();
+setTotal();
+
+
+console.log(carrito)
