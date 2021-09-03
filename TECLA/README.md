@@ -1,2 +1,0 @@
-# TECLA
-Clases de TECLA

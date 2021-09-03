@@ -12,10 +12,10 @@ class ShoppingCart {
     this.articles.push(article);
   }
 
-  deleteArticle(article){
+  deleteArticle(article) {
     for (let i = 0; i < this.articles.length; i++) {
       const element = this.articles[i];
-      
+
     }
     delete this.articles[article];
   }
@@ -54,13 +54,13 @@ function saludo() {
   console.log('hi')
 }
 
-function deleteProduct(nombreProducto, precioProducto, urlImgProducto){
+function deleteProduct(nombreProducto, precioProducto, urlImgProducto) {
   producto = [nombreProducto, precioProducto, urlImgProducto];
   console.log(carrito);
   console.log(carrito['articles'][1][0])
   console.log(producto)
   console.log(carrito['articles'][1][0] == producto[0])
-  
+
   carrito.deleteArticle(producto);
   guardarCarrito();
   //rercuperarCarrito();
@@ -132,7 +132,7 @@ function mostrarCarrito(nombre, precio, imagen) {
 async function getMercadoLibre() {
   console.log('hi')
 
-  let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=12";
+  let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=11";
   let resp = await fetch(url);
 
   const data = await resp.json();
@@ -181,6 +181,7 @@ function rercuperarCarrito() {
   }
 }
 
+
 function colocarTotal() {
   //console.log(carrito.getTotal())
   rercuperarCarrito();
@@ -192,18 +193,17 @@ function colocarTotal() {
     total = carrito.getTotal()
     //console.log(carrito)
   }
-  var totalHTML = document.getElementById('total-carrito');
-  total = carrito.getTotal()
-  totalHTML.textContent = '$' + total.toFixed(2);
-
-  setTotal();
+  if (document.getElementById('total-carrito')) {
+    setTotal();
+  }
 
 
 
 }
 rercuperarCarrito();
 colocarTotal();
-setTotal();
+
+
 
 
 //console.log(carrito)
