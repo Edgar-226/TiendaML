@@ -1,6 +1,4 @@
-//var jquery = require('jquery');
 
-//Clase Carrito
 class ShoppingCart {
 
   constructor(nombre) {
@@ -14,6 +12,13 @@ class ShoppingCart {
     this.articles.push(article);
   }
 
+  deleteArticle(article){
+    for (let i = 0; i < this.articles.length; i++) {
+      const element = this.articles[i];
+      
+    }
+    delete this.articles[article];
+  }
 
 
   getTotal() {
@@ -36,7 +41,7 @@ function addcarrito(nombreProducto, precioProducto, urlImgProducto) {
   total = carrito.getTotal();
 
   //console.log('$', total)
-
+  alert(nombreProducto + ' Se agrego al carrito. ')
   var totalHTML = document.getElementById('total-carrito');
 
   //console.log(carrito);
@@ -49,6 +54,17 @@ function saludo() {
   console.log('hi')
 }
 
+function deleteProduct(nombreProducto, precioProducto, urlImgProducto){
+  producto = [nombreProducto, precioProducto, urlImgProducto];
+  console.log(carrito);
+  console.log(carrito['articles'][1][0])
+  console.log(producto)
+  console.log(carrito['articles'][1][0] == producto[0])
+  
+  carrito.deleteArticle(producto);
+  guardarCarrito();
+  //rercuperarCarrito();
+}
 
 
 
@@ -60,16 +76,15 @@ function saludo() {
 //https://api.mercadolibre.com/products/MLA10025564
 
 async function mostrarEnPagina(idProducto) {
-  let url = 'https://api.mercadolibre.com/items/' + idProducto;
-  //console.log(url);
-  let resp = await fetch(url);
+  if (document.getElementById('caja')) {
+    let url = 'https://api.mercadolibre.com/items/' + idProducto;
+    //console.log(url);
+    let resp = await fetch(url);
 
-  const data = await resp.json();
-  //console.log(data['pictures'][0]['url']);
+    const data = await resp.json();
+    //console.log(data['pictures'][0]['url']);
 
-
-
-  let producto = `
+    let producto = `
   <div class="contenido-producto" style="justify-content: center;">
     <img src=${data['pictures'][0]['url']} class="card-img-top"
     alt="...">
@@ -82,17 +97,18 @@ async function mostrarEnPagina(idProducto) {
   </div>`
 
 
-  let productoHTML = document.createElement('div');
-  productoHTML.classList.add('contenedor-producto', 'col-6', 'col-sm-3', 'p-3', 'border', 'Secondary')
+    let productoHTML = document.createElement('div');
+    productoHTML.classList.add('contenedor-producto', 'col-6', 'col-sm-3', 'p-3', 'border', 'Secondary')
 
-  productoHTML.innerHTML += producto;
-  document.getElementById('caja').appendChild(productoHTML);
-
+    productoHTML.innerHTML += producto;
+    document.getElementById('caja').appendChild(productoHTML);
+  }
 
 }
 
 function mostrarCarrito(nombre, precio, imagen) {
-  let producto = `
+  if (document.getElementById('productosCarrito')) {
+    let producto = `
   <div class="contenido-producto" style="justify-content: center;">
     <img src="${imagen}" class="card-img-top"
     alt="...">
@@ -100,18 +116,18 @@ function mostrarCarrito(nombre, precio, imagen) {
       <h5 class="card-title">${nombre}</h5>
       <p class="card-text">$${precio.toFixed(2)}</p>
       
-      <button class="btn btn-primary" onclick="saludo()">Eliminar</button>
+      <button class="btn btn-primary" onclick="deleteProduct('${nombre}', ${precio}, '${imagen}')"">Eliminar</button>
     </div>
   </div>`
 
 
-  let productoHTML = document.createElement('div');
-  productoHTML.classList.add('contenedor-producto', 'col-6', 'col-sm-3', 'p-3', 'border', 'Secondary')
+    let productoHTML = document.createElement('div');
+    productoHTML.classList.add('contenedor-producto', 'col-6', 'col-sm-3', 'p-3', 'border', 'Secondary')
 
-  productoHTML.innerHTML += producto;
-  document.getElementById('productosCarrito').appendChild(productoHTML);
+    productoHTML.innerHTML += producto;
+    document.getElementById('productosCarrito').appendChild(productoHTML);
+  }
 }
-
 
 async function getMercadoLibre() {
   console.log('hi')
@@ -129,32 +145,16 @@ async function getMercadoLibre() {
 
   }
 
-
-
-
 }
 getMercadoLibre()
 
 function irCarrito() {
   guardarCarrito()
   window.location.href = "./carrito.html";
-  obtenerCarrito();
+
 }
 
-function obtenerCarrito() {
-  rercuperarCarrito();
-  console.log(carrito);
 
-  // console.log(total);
-  //
-  // //console.log('$', total)
-
-  // var totalHTML = document.getElementById('total-carrito');
-
-  // // //console.log(carrito);
-
-  // totalHTML.textContent = '$' + total.toFixed(2);
-}
 
 function setTotal() {
   rercuperarCarrito();
@@ -169,16 +169,16 @@ function guardarCarrito() {
 
 function rercuperarCarrito() {
   carritoRec = JSON.parse(sessionStorage.getItem('carrito'))
-
-  console.log(carritoRec);
-  if (carrito['total'] == 0) {
-    for (let i = 0; i < carritoRec['articles'].length; i++) {
-      carrito.addArticle(carritoRec['articles'][i])
-      total = carrito.getTotal()
-      console.log(carrito)
+  if (carritoRec) {
+    //console.log(carritoRec);
+    if (carrito['total'] == 0) {
+      for (let i = 0; i < carritoRec['articles'].length; i++) {
+        carrito.addArticle(carritoRec['articles'][i])
+        total = carrito.getTotal()
+        //console.log(carrito)
+      }
     }
   }
-
 }
 
 function colocarTotal() {
@@ -190,7 +190,7 @@ function colocarTotal() {
   for (let i = 0; i < carrito['articles'].length; i++) {
     mostrarCarrito(carrito['articles'][i][0], carrito['articles'][i][1], carrito['articles'][i][2])
     total = carrito.getTotal()
-    console.log(carrito)
+    //console.log(carrito)
   }
   var totalHTML = document.getElementById('total-carrito');
   total = carrito.getTotal()
@@ -206,4 +206,4 @@ colocarTotal();
 setTotal();
 
 
-console.log(carrito)
+//console.log(carrito)
