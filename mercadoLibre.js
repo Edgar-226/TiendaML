@@ -164,11 +164,11 @@ function setTotal() {
 }
 
 function guardarCarrito() {
-  sessionStorage.setItem('carrito', JSON.stringify(carrito));
+  localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 function rercuperarCarrito() {
-  carritoRec = JSON.parse(sessionStorage.getItem('carrito'))
+  carritoRec = JSON.parse(localStorage.getItem('carrito'))
   if (carritoRec) {
     //console.log(carritoRec);
     if (carrito['total'] == 0) {
