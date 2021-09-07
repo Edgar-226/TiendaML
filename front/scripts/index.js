@@ -60,7 +60,7 @@ async function agregarProducto(Articulo) {
     getCart()
 }
 async function eliminarProducto(id) {
-    await fetch('http://localhost:3000/cart/' + id, {
+    await fetch('http://localhost:3000/cart/' + id +'/alojomora', {
         method: 'DELETE'
     });
     // const cart = getCart();

@@ -2,7 +2,6 @@
 <html lang="es">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="camaras, accesorios para camara">
@@ -14,47 +13,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-
     <link rel="stylesheet" type="text/css" href="./css/proyecto.css">
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
         integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ballet|Montserrat">
-
 </head>
 
 <body>
     <header class="header"></header>
     <main>
         <div class="container">
-
             <div id="caja" class="row g-2 secondary">
-
                 <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
                     <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
                         <img src="img/i4s.webp" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Estuche para lentes</h5>
                             <p class="card-text">$530.00</p>
-
                             <button class="btn btn-primary"
-                                onclick="agregarProducto({'id': 1,'nombre':'Estuche para lentes','cantidad':1,'precio':530,'foto': 'img/i4s.webp'})"
-                                >Agregar al Carrito</button>
+                                onclick="agregarProducto({'id': 1,'nombre':'Estuche para lentes','cantidad':1,'precio':530,'foto': 'img/i4s.webp'})">Agregar
+                                al Carrito</button>
                         </div>
                     </div>
                 </div>
-
-
-                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6  p-3  Secondary">
+                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
                     <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
                         <img src="img/i1.webp" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Carrete para camara antigua</h5>
                             <p class="card-text">$699.00</p>
-
                             <button class="btn btn-primary"
-                                onclick="addcarrito('Carrete para camara antigua', 699.00, 'img/i1.webp')">Agregar
+                                onclick="agregarProducto({'id': 2,'nombre':'Carrete para camara antigua','cantidad':1,'precio':699,'foto': 'img/i1.webp'})">Agregar
                                 al Carrito</button>
                         </div>
                     </div>
@@ -65,72 +54,50 @@
                         <div class="card-body">
                             <h5 class="card-title">Polaroid clasica</h5>
                             <p class="card-text">$1500.00</p>
-
                             <button class="btn btn-primary"
-                                onclick="addcarrito('Polaroid clasica', 1500.00, 'img/i2.webp')">Agregar
+                                onclick="agregarProducto({'id': 3,'nombre':'Polaroid clasica','cantidad':1,'precio':1500,'foto': 'img/i2.webp'})">Agregar
                                 al Carrito</button>
                         </div>
                     </div>
                 </div>
-
-
-                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3 border Secondary">
-                    <div class="contenido-producto" style=" justify-content: center;">
-                        <img src="img/i3s.webp" class="card-img-top">
-
+                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
+                    <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
+                        <img src="img/i3s.webp" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Camara polariod instantanea</h5>
                             <p class="card-text">$1220.00</p>
-
                             <button class="btn btn-primary"
-                                onclick="addcarrito('Camara polariod instantanea', 1220.00, 'img/i3s.webp')">Agregar
+                                onclick="agregarProducto({'id': 4,'nombre':'Camara polariod instantanea','cantidad':1,'precio':1220,'foto': 'img/i3s.webp'})">Agregar
                                 al Carrito</button>
                         </div>
                     </div>
                 </div>
-
-
-
-                
-
-
-
-                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary" >
-                <div class=" contenido-producto border" style="justify-content: center; padding: 5px; ">
-                    <img src="img/i5s.webp" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Polaroid clasica edicion especial</h5>
-                        <p class="card-text">$180.00</p>
-
-                        <button class="btn btn-primary"
-                            onclick="addcarrito('Polaroid clasica edicion especial', 180.00, 'img/i5s.webp')">Agregar
-                            al Carrito</button>
+                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
+                    <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
+                        <img src="img/i5s.webp" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Polaroid clasica edicion especial</h5>
+                            <p class="card-text">$180.00</p>
+                            <button class="btn btn-primary"
+                                onclick="agregarProducto({'id': 5,'nombre':'Polaroid clasica edicion especial','cantidad':1,'precio':180,'foto': 'img/i5s.webp'})">Agregar
+                                al Carrito</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
-
-        </div>
-
         <section>
             <a href="https://api.whatsapp.com/send?phone=525524893699&text=Informaci%C3%B3n%20por%20favor"
                 class="whatsapp" target="_blank">
                 <i class="fab fa-whatsapp my-whatsapp"></i>
             </a>
         </section>
-
     </main>
     <footer class="footer"></footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./scripts/mercadoLibre.js"></script>
     <script src="./scripts/main.js"></script>
-
     <script src="./scripts/index.js"></script>
-
 </body>
 
 </html>
