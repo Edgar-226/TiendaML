@@ -53,7 +53,7 @@ app.post('/cart',midd.Autenticar, function (req, res) {
 
 
 
-app.delete('/cart/:id', function (req, res) {
+app.delete('/cart/:id/:clave',midd.Autenticarborrar, function (req, res) {
     if (db.borraProducto(req.params.id)) {
             db.respuesta = {
             codigo: 200,

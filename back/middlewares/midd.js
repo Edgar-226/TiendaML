@@ -33,6 +33,15 @@ Autenticar = function (req,res,next) {
         return res.status(400).json("No dijiste la palabra mágica")
     }
 }
+Autenticarborrar = function (req,res,next) {
+    const {id,clave} = req.params;
+    if(clave == "alojomora"){
+        return next()
+    }
+    else{
+        return res.status(400).json("No dijiste la palabra mágica")
+    }
+}
 
 const limitador = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutos
@@ -40,6 +49,6 @@ const limitador = rateLimit({
     message: 'Limite de solicitudes exedido'
 })
 
-module.exports = {limitador, Autenticar, log, corsOption}
+module.exports = {limitador, Autenticar, Autenticarborrar, log, corsOption}
 
 
