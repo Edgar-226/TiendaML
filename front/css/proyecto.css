@@ -406,6 +406,9 @@ footer span a {
 .carrito:hover {
   cursor: pointer;
 }
+.manita:hover {
+  cursor: pointer;
+}
 
 .center{
   display: flex;

@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require('dotenv');
 const db = require('./db/db');
+const fetch = require("node-fetch");
 const midd = require('./middlewares/midd');
 const cors = require('cors');
 const app = express();
@@ -19,12 +20,12 @@ app.listen(process.env.PORT, function () {
 
 
 //Endpoint para obtener el Carrito
-app.get('/cart',cors(midd.corsOption),function (req, res) {
+app.get('/cart', cors(midd.corsOption), function (req, res) {
     res.send(db.Cart)
 })
 
 
-app.post('/cart',midd.Autenticar, function (req, res) {
+app.post('/cart', midd.Autenticar, function (req, res) {
     if (!req.body.id || !req.body.nombre || !req.body.cantidad || !req.body.precio || !req.body.foto) {
         db.respuesta = {
             codigo: 502,
@@ -37,10 +38,10 @@ app.post('/cart',midd.Autenticar, function (req, res) {
                 codigo: 200,
                 error: false,
                 mensaje: 'Producto añadido'
-                
+
             }
         } else {
-            db.nuevoProducto(req.body.id, req.body.nombre,req.body.cantidad,req.body.precio, req.body.foto)
+            db.nuevoProducto(req.body.id, req.body.nombre, req.body.cantidad, req.body.precio, req.body.foto)
             db.respuesta = {
                 codigo: 200,
                 error: false,
@@ -53,9 +54,9 @@ app.post('/cart',midd.Autenticar, function (req, res) {
 
 
 
-app.delete('/cart/:id/:clave',midd.Autenticarborrar, function (req, res) {
+app.delete('/cart/:id/:clave', midd.Autenticarborrar, function (req, res) {
     if (db.borraProducto(req.params.id)) {
-            db.respuesta = {
+        db.respuesta = {
             codigo: 200,
             error: false,
             mensaje: 'Producto eliminado'
@@ -69,3 +70,5 @@ app.delete('/cart/:id/:clave',midd.Autenticarborrar, function (req, res) {
     }
     res.send(db.respuesta);
 })
+
+

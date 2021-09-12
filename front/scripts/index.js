@@ -69,6 +69,9 @@ async function eliminarProducto(id) {
     location.reload();
 }
 
+function saludo(){
+    console.log("Hi")
+}
 
 
 // let Articulo = {

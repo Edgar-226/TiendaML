@@ -37,8 +37,6 @@ async function mostrarEnPagina(idProducto) {
 }
 
 async function getMercadoLibre() {
-  console.log('hi')
-
   let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=11";
   let resp = await fetch(url);
 

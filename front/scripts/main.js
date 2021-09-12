@@ -65,15 +65,24 @@ $(function () {
                 <article class="col-lg-3 col-md-4 col-sm-12">
 
 
-                    <div class="header-nav-option"
-                        style="display:flex;  justify-content: center;">
-
+                    <div class="header-nav-option" >
+                        <nav class="navbar navbar-light bg-light">
+                        </nav>    
+                                
+                                    
+                                    
+                                
+                            
+                        
+                        <form class="col-sm-3 col-ml-6">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        </form>                        
                         <a href="#"><img src="img/search.png" alt=""></a>
                         <a href="#"><img src="img/heart.png" alt=""></a>
                         <a class="carrito" onclick='irCarrito()'><img src="img/cart.png" alt=""> </a>
                         <p class="carrito" onclick='irCarrito()' id="total-carrito" class="total-carrito"> $0.00 </p>
-
-
+                        </form>
+                        
                     </div>
                 </article>
             </div>
@@ -82,11 +91,17 @@ $(function () {
 </header>
 <!-- Fin del Header -->`);
 
-$(".footer").append(`<h3>Síguenos</h3>
+    $(".footer").append(`<h3>Síguenos</h3>
 <span>
     <a href="index.html"><img src="img/logofoot.png" style=width:15% alt=""></a>
     <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
     <a href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i></a>
 </span>`);
+
+
+$(".BotonPolaroid").click(function(){
+    $("#caja").toggle();
+});
+
 
 })

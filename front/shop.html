@@ -22,65 +22,137 @@
 <body>
     <header class="header"></header>
     <main>
-        <div class="container">
-            <div id="caja" class="row g-2 secondary">
-                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
-                    <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
-                        <img src="img/i4s.webp" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Estuche para lentes</h5>
-                            <p class="card-text">$530.00</p>
-                            <button class="btn btn-primary"
-                                onclick="agregarProducto({'id': 1,'nombre':'Estuche para lentes','cantidad':1,'precio':530,'foto': 'img/i4s.webp'})">Agregar
-                                al Carrito</button>
+        <div class="container row">
+            <div class="col-3">
+
+                <div class="container row">
+                    <div class="container-product  primary">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class=" accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Camaras antiguas
+                                    </button>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><a class="BotonPolaroid link-secondary">Camara Polaroid</a></li>
+                                                <li class="list-group-item"><a href="hombre.html"
+                                                        class="link-secondary">Camaras Kodak</a></li>
+                                                <li class="list-group-item"><a href="accesorios.html"
+                                                        class="link-secondary">Camaras Retro</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </h2>
+
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Camaras modernas
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <strong>This is the second item's accordion body.</strong> It is hidden by
+                                        default,
+
+                                        <code>.accordion-body</code>, though the transition does limit overflow.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        Accesorios
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <strong>This is the third item's accordion body.</strong> It is hidden by
+                                        default,
+                                        until
+
+                                        <code>.accordion-body</code>, though the transition does limit overflow.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
-                    <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
-                        <img src="img/i1.webp" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Carrete para camara antigua</h5>
-                            <p class="card-text">$699.00</p>
-                            <button class="btn btn-primary"
-                                onclick="agregarProducto({'id': 2,'nombre':'Carrete para camara antigua','cantidad':1,'precio':699,'foto': 'img/i1.webp'})">Agregar
-                                al Carrito</button>
+            </div>
+
+
+            <div class="col-9">
+                <div class="container">
+                    <div id="caja" class="row g-2 secondary">
+                        <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6  Secondary">
+                            <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
+                                <img src="img/i4s.webp" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Estuche para lentes</h5>
+                                    <p class="card-text">$530.00</p>
+                                    <button class="btn btn-primary"
+                                        onclick="agregarProducto({'id': 1,'nombre':'Estuche para lentes','cantidad':1,'precio':530,'foto': 'img/i4s.webp'})">Agregar
+                                        al Carrito</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
-                    <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
-                        <img src="img/i2.webp" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Polaroid clasica</h5>
-                            <p class="card-text">$1500.00</p>
-                            <button class="btn btn-primary"
-                                onclick="agregarProducto({'id': 3,'nombre':'Polaroid clasica','cantidad':1,'precio':1500,'foto': 'img/i2.webp'})">Agregar
-                                al Carrito</button>
+                        <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
+                            <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
+                                <img src="img/i1.webp" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Carrete para camara antigua</h5>
+                                    <p class="card-text">$699.00</p>
+                                    <button class="btn btn-primary"
+                                        onclick="agregarProducto({'id': 2,'nombre':'Carrete para camara antigua','cantidad':1,'precio':699,'foto': 'img/i1.webp'})">Agregar
+                                        al Carrito</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
-                    <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
-                        <img src="img/i3s.webp" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Camara polariod instantanea</h5>
-                            <p class="card-text">$1220.00</p>
-                            <button class="btn btn-primary"
-                                onclick="agregarProducto({'id': 4,'nombre':'Camara polariod instantanea','cantidad':1,'precio':1220,'foto': 'img/i3s.webp'})">Agregar
-                                al Carrito</button>
+                        <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
+                            <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
+                                <img src="img/i2.webp" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Polaroid clasica</h5>
+                                    <p class="card-text">$1500.00</p>
+                                    <button class="btn btn-primary"
+                                        onclick="agregarProducto({'id': 3,'nombre':'Polaroid clasica','cantidad':1,'precio':1500,'foto': 'img/i2.webp'})">Agregar
+                                        al Carrito</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
-                    <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
-                        <img src="img/i5s.webp" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Polaroid clasica edicion especial</h5>
-                            <p class="card-text">$180.00</p>
-                            <button class="btn btn-primary"
-                                onclick="agregarProducto({'id': 5,'nombre':'Polaroid clasica edicion especial','cantidad':1,'precio':180,'foto': 'img/i5s.webp'})">Agregar
-                                al Carrito</button>
+                        <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
+                            <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
+                                <img src="img/i3s.webp" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Camara polariod instantanea</h5>
+                                    <p class="card-text">$1220.00</p>
+                                    <button class="btn btn-primary"
+                                        onclick="agregarProducto({'id': 4,'nombre':'Camara polariod instantanea','cantidad':1,'precio':1220,'foto': 'img/i3s.webp'})">Agregar
+                                        al Carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contenedor-producto col-xl-3 col-md-4 col-sm-6 p-3  Secondary">
+                            <div class="contenido-producto border" style="justify-content: center; padding: 5px; ">
+                                <img src="img/i5s.webp" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Polaroid clasica edicion especial</h5>
+                                    <p class="card-text">$180.00</p>
+                                    <button class="btn btn-primary"
+                                        onclick="agregarProducto({'id': 5,'nombre':'Polaroid clasica edicion especial','cantidad':1,'precio':180,'foto': 'img/i5s.webp'})">Agregar
+                                        al Carrito</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
