@@ -1,12 +1,30 @@
 import fetch from 'node-fetch';
 
-const body = {a: 1};
 
-const response = await fetch('https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=11', {
-	method: 'post',
-	body: JSON.stringify(body),
-	headers: {'Content-Type': 'application/json'}
-});
-const data = await response.json();
+async function getMercadoLibre() {
+    let productos = {}
+    let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=11";
+    let resp = await fetch(url);
+    const data = await resp.json();
+    //console.log(data['results']);
+    
 
-console.log(data);
+    for (let i = 0; i < data['results'].length; i++) {
+        productos[data['results'][i]['id']] = await consultaProducto(data['results'][i]['id'])
+        
+    }
+    
+    return productos
+}
+
+async function consultaProducto(idProducto) {
+    let producto = {} 
+    let url = 'https://api.mercadolibre.com/items/' + idProducto;
+    
+    let resp = await fetch(url);
+    const data = await resp.json();
+    return {'id':data['id'],'nombre':data['title'],'cantidad':1,'precio':data['price'],'foto': data['pictures'][0]['url']};
+    
+}
+
+console.log(await getMercadoLibre());
