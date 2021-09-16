@@ -1,9 +1,6 @@
-import fetch from 'node-fetch';
-
-
-async function getMercadoLibre() {
+async function getMercadoLibre(cat = 'MLM1039') {
     let productos = {}
-    let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=11";
+    let url = `https://api.mercadolibre.com/sites/MLM/search?category=${cat}&offset=10&limit=11`;
     let resp = await fetch(url);
     const data = await resp.json();
     //console.log(data['results']);
@@ -28,3 +25,5 @@ async function consultaProducto(idProducto) {
 }
 
 console.log(await getMercadoLibre());
+
+module.exports = {getMercadoLibre, consultaProducto}
