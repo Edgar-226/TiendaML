@@ -2,8 +2,9 @@ const express = require("express");
 const dotenv = require('dotenv');
 const db = require('./db/db');
 const midd = require('./middlewares/midd');
-
+const axios = require('axios');
 const cors = require('cors');
+const ml = require('./ml')
 const app = express();
 
 
@@ -73,3 +74,19 @@ app.delete('/cart/:id/:clave', midd.Autenticarborrar, function (req, res) {
     res.send(db.respuesta);
 })
 
+app.get('/ml', function (req, res) {
+
+    axios.get('https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=11').then(response => {
+        // returning the data here allows the caller to get it through another .then(...)
+        res.send(response.data)
+    })
+
+})
+app.get('/ml/:id', function (req, res) {
+
+    axios.get('https://api.mercadolibre.com/items/' + req.params.id).then(response => {
+        // returning the data here allows the caller to get it through another .then(...)
+        res.send(response.data)
+    })
+
+})

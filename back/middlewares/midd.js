@@ -45,7 +45,7 @@ Autenticarborrar = function (req,res,next) {
 
 const limitador = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutos
-    max: 100, // Limite de peticiones
+    max: 1000, // Limite de peticiones
     message: 'Limite de solicitudes exedido'
 })
 

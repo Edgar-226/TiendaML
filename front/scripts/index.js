@@ -6,13 +6,13 @@ async function mostrarCarrito(id, nombre, precio, imagen, cantidad) {
                 <div class="card-body">
                     <h5 class="card-title">${nombre}</h5>
                     <p class="card-text">Cantidad: ${cantidad}</p>
-                    <p class="card-text">$${(precio*cantidad).toFixed(2)}</p>
+                    <p class="card-text">$${(precio * cantidad).toFixed(2)}</p>
                     <button class="btn btn-primary" onclick="eliminarProducto('${id}')">Eliminar</button>
                 </div>
             </div>`;
 
         let productoHTML = document.createElement('div');
-        productoHTML.classList.add('contenedor-producto', 'col-xl-3', 'col-md-4', 'col-sm-6',  'Secondary')
+        productoHTML.classList.add('contenedor-producto', 'col-xl-3', 'col-md-4', 'col-sm-6', 'Secondary')
 
         productoHTML.innerHTML += producto;
         document.getElementById('productosCarrito').appendChild(productoHTML);
@@ -35,8 +35,8 @@ async function getCart() {
     }
     else {
         for (i in cart) {
-            mostrarCarrito(cart[i]['id'], cart[i]['nombre'], cart[i]['precio'], cart[i]['foto'],cart[i]['cantidad'])
-            total += cart[i]['precio']*cart[i]['cantidad']
+            mostrarCarrito(cart[i]['id'], cart[i]['nombre'], cart[i]['precio'], cart[i]['foto'], cart[i]['cantidad'])
+            total += cart[i]['precio'] * cart[i]['cantidad']
         }
         totalhtml = document.getElementById('total-carrito');
         totalhtml.textContent = `$${total.toFixed(2)}`
@@ -47,20 +47,34 @@ async function getCart() {
 getCart()
 
 
-async function agregarProducto(Articulo) {
-    Articulo['clave']= 'alojomora';
+async function agregarProducto(id) {
+    let url = 'http://localhost:3000/ml/' + id;
+    let resp = await fetch(url);
+    const data = await resp.json();
+
+    articulo = { 
+        'id':  data['id'], 
+        'nombre': data['title'], 
+        'cantidad': 1, 
+        'precio': data['price'], 
+        'foto': data['pictures'][0]['url'], 
+        'clave': 'alojomora'
+    }
+
     await fetch('http://localhost:3000/cart', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(Articulo)
+        body: JSON.stringify(articulo)
     });
-    alert(Articulo['nombre'] + ' Ha sido agregado al Carrito')
+    alert(data['title'] + ' Ha sido agregado al Carrito')
     getCart()
 }
+
+
 async function eliminarProducto(id) {
-    await fetch('http://localhost:3000/cart/' + id +'/alojomora', {
+    await fetch('http://localhost:3000/cart/' + id + '/alojomora', {
         method: 'DELETE'
     });
     // const cart = getCart();
@@ -69,7 +83,7 @@ async function eliminarProducto(id) {
     location.reload();
 }
 
-function saludo(){
+function saludo() {
     console.log("Hi")
 }
 

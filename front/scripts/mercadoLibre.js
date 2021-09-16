@@ -1,13 +1,6 @@
-//Busueda General
-//https://api.mercadolibre.com/sites/MLM/search?q=Motorola%20G6
-//Busqueda por categoria
-//https://api.mercadolibre.com/sites/MLM/search?category=MLM1039
-//Busqueda por id
-//https://api.mercadolibre.com/products/MLA10025564
-
 async function mostrarEnPagina(idProducto) {
   if (document.getElementById('caja')) {
-    let url = 'https://api.mercadolibre.com/items/' + idProducto;
+    let url = 'http://localhost:3000/ml/' + idProducto;
     //console.log(url);
     let resp = await fetch(url);
 
@@ -22,7 +15,7 @@ async function mostrarEnPagina(idProducto) {
       <h5 class="card-title">${data['title']}</h5>
       <p class="card-text">$${data['price'].toFixed(2)}</p>
       
-      <button class="btn btn-primary"  onclick="agregarProducto({id:'${data['id']}',nombre:'${data['title']}',cantidad:1,precio:${data['price']},foto: '${data['pictures'][0]['url']}'})">Agregar al Carrito</button>
+      <button class="btn btn-primary"  onclick="agregarProducto('${data['id']}')">Agregar al Carrito</button>
     </div>
   </div>`
 
@@ -37,7 +30,7 @@ async function mostrarEnPagina(idProducto) {
 }
 
 async function getMercadoLibre() {
-  let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=11";
+  let url = 'http://localhost:3000/ml';
   let resp = await fetch(url);
 
   const data = await resp.json();
