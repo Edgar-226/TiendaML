@@ -11,9 +11,6 @@ const axios = require('axios');
 const app = express();
 
 
-
-
-
 //Middlelware
 app.use(express.json());
 app.use(cors());
