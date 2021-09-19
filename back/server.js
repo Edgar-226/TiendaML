@@ -1,10 +1,13 @@
 const express = require("express");
 const cors = require('cors');
-require('dotenv').config()
-const sequelize = require('./mvc/db/conexion')
+require('dotenv').config();
+const sequelize = require('./mvc/db/conexion');
+const productsView = require('./mvc/view/productsView')
+const loginView = require('./mvc/view/loginView')
 const db = require('./db/db');
 const midd = require('./middlewares/midd');
 const axios = require('axios');
+
 
 const app = express();
 
@@ -35,6 +38,11 @@ async function serverStart() {
 }
 
 serverStart();
+
+
+//iniciamos vistas
+productsView(app)
+loginView(app)
 
 //Endpoint para obtener el Carrito
 app.get('/cart', cors(midd.corsOption), function (req, res) {
