@@ -12,6 +12,5 @@ module.exports.login = async (user) => {
     else {
         return "Usuario no encontrado"
     }
-
-
+    
 }

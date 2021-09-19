@@ -5,4 +5,9 @@ module.exports = async (app) => {
         let user = req.body;
         res.send(await loginController.login(user));
     });
+
+    app.post('/login/insert', async (req, res) =>{
+        let user = req.body;
+        res.send(await loginController.insert(user));
+    });
 };
