@@ -4,7 +4,6 @@ require('dotenv').config();
 const sequelize = require('./mvc/db/conexion');
 const productsView = require('./mvc/view/productsView')
 const loginView = require('./mvc/view/loginView')
-const db = require('./db/db');
 const midd = require('./middlewares/midd');
 const axios = require('axios');
 
@@ -45,56 +44,6 @@ productsView(app)
 loginView(app)
 
 //Endpoint para obtener el Carrito
-app.get('/cart', cors(midd.corsOption), function (req, res) {
-    res.send(db.Cart)
-})
-
-
-app.post('/cart', midd.Autenticar, function (req, res) {
-    if (!req.body.id || !req.body.nombre || !req.body.cantidad || !req.body.precio || !req.body.foto) {
-        db.respuesta = {
-            codigo: 502,
-            error: true,
-            mensaje: 'Es indispensable agregar todos los datos'
-        }
-    } else {
-        if (db.buscaProducto(req.body.id)) {
-            db.respuesta = {
-                codigo: 200,
-                error: false,
-                mensaje: 'Producto añadido'
-
-            }
-        } else {
-            db.nuevoProducto(req.body.id, req.body.nombre, req.body.cantidad, req.body.precio, req.body.foto)
-            db.respuesta = {
-                codigo: 200,
-                error: false,
-                mensaje: '¨Producto Agregado'
-            }
-        }
-    }
-    res.send(db.respuesta)
-})
-
-
-
-app.delete('/cart/:id/:clave', midd.Autenticarborrar, function (req, res) {
-    if (db.borraProducto(req.params.id)) {
-        db.respuesta = {
-            codigo: 200,
-            error: false,
-            mensaje: 'Producto eliminado'
-        }
-    } else {
-        db.respuesta = {
-            codigo: 421,
-            error: true,
-            mensaje: 'Producto no existe'
-        }
-    }
-    res.send(db.respuesta);
-})
 
 app.get('/ml', function (req, res) {
 
