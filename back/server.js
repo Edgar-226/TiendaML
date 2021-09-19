@@ -1,13 +1,15 @@
 const express = require("express");
-const dotenv = require('dotenv');
+const cors = require('cors');
+require('dotenv').config()
+const sequelize = require('./mvc/db/conexion')
 const db = require('./db/db');
 const midd = require('./middlewares/midd');
 const axios = require('axios');
-const cors = require('cors');
+
 const app = express();
 
 
-dotenv.config();
+
 
 
 //Middlelware
@@ -16,10 +18,23 @@ app.use(cors());
 app.use(midd.log);
 app.use(midd.limitador);
 
-app.listen(process.env.PORT, function () {
-    console.log(`Servidor iniciado en http://${process.env.HOST}:${process.env.PORT}`);
-});
+app.use(express.static(__dirname + '/public'))
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
 
+async function serverStart() {
+    try {
+        await sequelize.authenticate();
+        console.log('Conección estabilizada correctamente');
+        app.listen(process.env.PORT, function () {
+            console.log(`Sistema iniciado en http://${process.env.HOST}:${process.env.PORT}`);
+        });
+    } catch (error) {
+        console.error('No se pudo conectar correctamebte con la Base de datos:', error);
+    }
+}
+
+serverStart();
 
 //Endpoint para obtener el Carrito
 app.get('/cart', cors(midd.corsOption), function (req, res) {
