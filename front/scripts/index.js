@@ -52,12 +52,12 @@ async function agregarProducto(id) {
     let resp = await fetch(url);
     const data = await resp.json();
 
-    articulo = { 
-        'id':  data['id'], 
-        'nombre': data['title'], 
-        'cantidad': 1, 
-        'precio': data['price'], 
-        'foto': data['pictures'][0]['url'], 
+    articulo = {
+        'id': data['id'],
+        'nombre': data['title'],
+        'cantidad': 1,
+        'precio': data['price'],
+        'foto': data['pictures'][0]['url'],
         'clave': 'alojomora'
     }
 
