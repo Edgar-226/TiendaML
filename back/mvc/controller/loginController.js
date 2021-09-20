@@ -14,3 +14,15 @@ module.exports.login = async (user) => {
     }
     
 }
+
+module.exports.insert = async(user) => {
+    let login = new loginModel();
+    let data = await login.insert(user)
+    if (data) {
+        token = jwt.sign({ data }, process.env.SECRETKEY);
+        return token;
+    }
+    else {
+        return "Regristro fallido Try again"
+    }
+}
