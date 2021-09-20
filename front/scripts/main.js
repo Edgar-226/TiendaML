@@ -63,25 +63,12 @@ $(function () {
                         </nav>
                     </article>
                 <article class="col-lg-3 col-md-4 col-sm-12">
-
-
-                    <div class="header-nav-option" >
-                        <nav class="navbar navbar-light bg-light">
-                        </nav>    
-                                
-                                    
-                                    
-                                
-                            
-                        
-                        <form class="col-sm-3 col-ml-6">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                        </form>                        
-                        <a href="#"><img src="img/search.png" alt=""></a>
+                     <div class="header-nav-option"  style = "display:flex;">
+                        <a href="./shop.html"><img src="img/search.png" alt=""></a>
                         <a href="#"><img src="img/heart.png" alt=""></a>
                         <a class="carrito" onclick='irCarrito()'><img src="img/cart.png" alt=""> </a>
-                        <p class="carrito" onclick='irCarrito()' id="total-carrito" class="total-carrito"> $0.00 </p>
-                        </form>
+                        <p class="carrito" onclick='irCarrito()' id="total-carrito" class="total-carrito">$0.00</p>
+                    
                         
                     </div>
                 </article>
@@ -98,9 +85,59 @@ $(function () {
     <a href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i></a>
 </span>`);
 
+$(".botonBusqueda").click(async function(){
+    $("#cajaBuscar").empty()
+    const busqueda = $(".formularioBusqueda").val()
+    console.log(busqueda)
+    console.log('hola')
+    await buscarMercadoLibre(busqueda,'cajaBuscar');
+    $("#caja").hide();
+    $("#cajaML").hide();
+    $("#cajaPolaroid").hide();
+    $("#cajaKodak").hide();
+    $("#cajaNikon").hide();
+    $("#cajaBuscar").show()
+})
 
+$(".BotonAnyEd").click(function(){
+    $("#caja").show();
+    $("#cajaML").hide();
+    $("#cajaPolaroid").hide();
+    $("#cajaKodak").hide();
+    $("#cajaNikon").hide();
+    $("#cajaBuscar").hide()
+});
+$(".BotonMercadoL").click(function(){
+    $("#caja").hide();
+    $("#cajaML").show();
+    $("#cajaPolaroid").hide();
+    $("#cajaKodak").hide();
+    $("#cajaNikon").hide();
+    $("#cajaBuscar").hide()
+});
 $(".BotonPolaroid").click(function(){
-    $("#caja").toggle();
+    $("#caja").hide();
+    $("#cajaML").hide();
+    $("#cajaPolaroid").show();
+    $("#cajaKodak").hide();
+    $("#cajaNikon").hide();
+    $("#cajaBuscar").hide()
+});
+$(".BotonKodak").click(function(){
+    $("#caja").hide();
+    $("#cajaML").hide();
+    $("#cajaPolaroid").hide();
+    $("#cajaKodak").show();
+    $("#cajaNikon").hide();
+    $("#cajaBuscar").hide()
+});
+$(".BotonNikon").click(function(){
+    $("#caja").hide();
+    $("#cajaML").hide();
+    $("#cajaPolaroid").hide();
+    $("#cajaKodak").hide();
+    $("#cajaNikon").show();
+    $("#cajaBuscar").hide()
 });
 
 

@@ -1,5 +1,5 @@
-async function mostrarEnPagina(idProducto) {
-  if (document.getElementById('caja')) {
+async function mostrarEnPagina(idProducto, contenedor = 'cajaML') {
+  if (document.getElementById(contenedor)) {
     let url = 'http://localhost:3000/ml/' + idProducto;
     //console.log(url);
     let resp = await fetch(url);
@@ -24,7 +24,7 @@ async function mostrarEnPagina(idProducto) {
     productoHTML.classList.add('contenedor-producto', 'col-xl-3', 'col-md-4', 'col-sm-6', 'p-3',  'Secondary')
 
     productoHTML.innerHTML += producto;
-    document.getElementById('caja').appendChild(productoHTML);
+    document.getElementById(contenedor).appendChild(productoHTML);
   }
 
 }
@@ -44,6 +44,25 @@ async function getMercadoLibre() {
   }
 
 }
+
+async function buscarMercadoLibre(busqueda, contenedor){
+  let url = 'http://localhost:3000/ml/buscar/:'+busqueda;
+  let resp = await fetch(url);
+
+  const data = await resp.json();
+  //console.log(data['results']);
+
+  //console.log(data['results'][0]['id'])
+
+  for (let i = 0; i < data['results'].length; i++) {
+    mostrarEnPagina(data['results'][i]['id'],contenedor)
+
+  }
+}
+
+buscarMercadoLibre('polaroid','cajaPolaroid')
+buscarMercadoLibre('kodak','cajaKodak')
+buscarMercadoLibre('nikon','cajaNikon')
 getMercadoLibre()
 
 function irCarrito() {

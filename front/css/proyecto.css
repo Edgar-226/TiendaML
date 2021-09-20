@@ -4,7 +4,7 @@ body {
   font-family: "Langosta";
 }
 
-p {
+p, li{
   font-size: 15px;
   font-family: "Montserrat";
   color: #000;
@@ -413,4 +413,8 @@ footer span a {
 .center{
   display: flex;
   justify-content: center;
+}
+
+li{
+  
 }
