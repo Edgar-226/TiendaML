@@ -1,18 +1,5 @@
 $(function () {
 
-    // $("p").css({"background-color":"red"})
-    // $("#segundo").css({"background-color":"green"})
-    // $(".tercero").css({"background-color":"blue"})
-
-    // $("#primero").animate({width: "300px"});
-
-    //     $("#primero").mouseenter(function(){
-    //     $("#segundo").slideDown()
-    // })
-    // $("#primero").mouseleave(function(){
-    //     $("#segundo").slideUp()
-    // })
-
     $(".header").append(`<header class="header">
     <section class="header-top">
         <div class="container">
@@ -84,60 +71,43 @@ $(function () {
     <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
     <a href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i></a>
 </span>`);
+    function ocultarCajas() {
+        $("#caja").hide();
+        $("#cajaML").hide();
+        $("#cajaPolaroid").hide();
+        $("#cajaKodak").hide();
+        $("#cajaNikon").hide();
+        $("#cajaBuscar").hide()
+    }
+
 
     $(".botonBusqueda").click(async function () {
         $("#cajaBuscar").empty()
         const busqueda = $(".formularioBusqueda").val()
-        console.log(busqueda)
-        console.log('hola')
         await buscarMercadoLibre(busqueda, 'cajaBuscar');
-        $("#caja").hide();
-        $("#cajaML").hide();
-        $("#cajaPolaroid").hide();
-        $("#cajaKodak").hide();
-        $("#cajaNikon").hide();
+        ocultarCajas()
         $("#cajaBuscar").show()
     })
 
     $(".BotonAnyEd").click(function () {
-        $("#caja").show();
-        $("#cajaML").hide();
-        $("#cajaPolaroid").hide();
-        $("#cajaKodak").hide();
-        $("#cajaNikon").hide();
-        $("#cajaBuscar").hide()
+        ocultarCajas()
+        $("#caja").show();        
     });
     $(".BotonMercadoL").click(function () {
-        $("#caja").hide();
+        ocultarCajas()
         $("#cajaML").show();
-        $("#cajaPolaroid").hide();
-        $("#cajaKodak").hide();
-        $("#cajaNikon").hide();
-        $("#cajaBuscar").hide()
     });
     $(".BotonPolaroid").click(function () {
-        $("#caja").hide();
-        $("#cajaML").hide();
-        $("#cajaPolaroid").show();
-        $("#cajaKodak").hide();
-        $("#cajaNikon").hide();
-        $("#cajaBuscar").hide()
+        ocultarCajas()
+        $("#cajaPolaroid").show();        
     });
     $(".BotonKodak").click(function () {
-        $("#caja").hide();
-        $("#cajaML").hide();
-        $("#cajaPolaroid").hide();
-        $("#cajaKodak").show();
-        $("#cajaNikon").hide();
-        $("#cajaBuscar").hide()
+        ocultarCajas()
+        $("#cajaKodak").show();   
     });
     $(".BotonNikon").click(function () {
-        $("#caja").hide();
-        $("#cajaML").hide();
-        $("#cajaPolaroid").hide();
-        $("#cajaKodak").hide();
+        ocultarCajas()
         $("#cajaNikon").show();
-        $("#cajaBuscar").hide()
     });
 
 

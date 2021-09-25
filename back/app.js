@@ -5,7 +5,7 @@ const sequelize = require('./mvc/db/conexion');
 const productsView = require('./mvc/view/productsView')
 const loginView = require('./mvc/view/loginView')
 const mLView = require('./mvc/view/mLView')
-const midd = require('./middlewares/midd');
+
 
 
 
@@ -15,8 +15,7 @@ const app = express();
 //Middlelware
 app.use(express.json());
 app.use(cors());
-app.use(midd.log);
-app.use(midd.limitador);
+
 
 app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'ejs')
