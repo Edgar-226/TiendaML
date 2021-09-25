@@ -10,10 +10,9 @@ module.exports = async (app) => {
         res.send(await productController.findProduct(productId));
         
     });
-    app.delete('/products/delete/:id', async ( req, res) => {
-        let productId = req.params.id;
-        console.log(productId);
-        res.send(await productController.deleteProduct(productId));
+    app.delete('/products/delete/:name', async ( req, res) => {
+        let productName = req.params.name;
+        res.send(await productController.deleteProduct(productName));
     });
     app.post('/products/insert', async ( req, res) => {
         let product = req.body;

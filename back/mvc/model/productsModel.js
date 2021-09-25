@@ -14,18 +14,18 @@ module.exports = class productsModel {
         return result;
     }
 
-    async delete(productId){
-        let result = await sequelize.query("DELETE FROM products WHERE id ="+ productId);
+    async delete(productName){
+        let result = await sequelize.query("DELETE FROM products WHERE [name] ='"+ productName+"'");
         return result;
     }
     async insert(product){
         console.log(product)
-        let result = await sequelize.query("INSERT INTO products (brand,model,price) VALUES ('"+ product.brand+"','"+product.model+"',"+product.price+")");
+        let result = await sequelize.query("INSERT INTO products ([name],stock,price,picture) VALUES ('"+ product.name+"','"+product.stock+"',"+product.price+",'"+product.picture+"')");
         return result;
     }
     async update(product){
         console.log(product)
-        let result = await sequelize.query("UPDATE products SET price ='"+ product.price+"' WHERE id ='"+product.id+"'");
+        let result = await sequelize.query("UPDATE products SET price ='"+ product.price+"' WHERE [name] ='"+product.name+"'");
         return result;
     }
 }

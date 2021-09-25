@@ -11,9 +11,9 @@ module.exports.findProduct = async (productId) => {
     let result = await response.find(productId)
     return result;
 }
-module.exports.deleteProduct = async (productId) => {
+module.exports.deleteProduct = async (productName) => {
     let response = new productsModel();
-    let result = await response.delete(productId)
+    let result = await response.delete(productName)
     return result;
 }
 module.exports.insertProduct = async (product) => {
