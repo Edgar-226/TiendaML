@@ -1,4 +1,5 @@
 const productController = require ('../controller/productsController')
+const autentication= require('../middleware/autentication');
 
 module.exports = async (app) => {
     app.get('/products', async (req, res) => {
