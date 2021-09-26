@@ -13,11 +13,11 @@ function validateText(valor) {
 
 
 async function login() {
-    userMail = document.getElementById('loginEmail').value;
-    if (validateEmail(userMail)) {
+    userUser = document.getElementById('loginUser').value;
+    if (validateText(userUser)) {
         userPassword = document.getElementById('loginPassword').value;
         if (validateText(userPassword)) {
-            let login = { email: userMail, password: userPassword }
+            let login = { user: userUser, password: userPassword }
             console.log(login);
             let token = await fetch("http://localhost:3000/login", {
                 headers: {
@@ -26,11 +26,12 @@ async function login() {
                 method: 'POST',
                 body: JSON.stringify(login)
             });
-            console.log(await token)
             if (token != undefined) {
+                console.log(token)
                 let cookie = token
                 document.cookie = "token = " + cookie + "; max-age = 3600; path = /";
                 localStorage.setItem("token", token)
+                
             } else {
                 alert('Introdusca un email y contraseña validos')
             }
@@ -39,7 +40,7 @@ async function login() {
         }
     }
     else {
-        alert('Introdusca su email Correctamente')
+        alert('Introdusca su Usuario Correctamente')
     }
 
 }
