@@ -27,36 +27,43 @@
 <body>
     <header class="header"></header>
 
-    
+
     <main>
         <div class="container">
             <div class="row">
-                <article class="col-lg-6 col-md-6 col-sm-12">
+                <article class=" col-lg-6 col-md-6 col-sm-12">
                     <div class=" top">
                         <p>Soy Cliente</p>
-
-                        <p>Si ya cuentas con una cuenta, Inicia sesión con el correo que registraste y la contraseña que
+                        <p class="fw-light">Si ya cuentas con una cuenta, Inicia sesión con el correo que registraste y
+                            la contraseña que
                             proporcionaste.</p>
                     </div>
-                    <form action="http://54.221.147.12:8080/procesa_sesion.php" method="post" id="formulario">
-                        Dirección de correo<span class="text-danger">*</span><br>
-                        <input type="email" class="form-control" placeholder="Dirección de correo" required name="email"
-                            required id="email"><br>
-                        Contraseña<span class="text-danger">*</span><br>
-                        <input type="password" class="form-control" placeholder="Contraseña" required name="password"
-                            required id="pwd"><br>
-                        <input type="button" class="btn btn-primary" type="button" value="Iniciar Sesion">
-                        <p><span id="error"></span></p>
+                    <form id="login">
+                        <div class="mb-3">
+                            <label class="form-label">Dirección de correo<span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Dirección de correo"
+                                aria-describedby="emailHelp" required>
+                            <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie
+                                más.</div>
+                        </div>
+                        <div class="col">
+                            Contraseña<span class="text-danger">*</span><br>
+                            <input type="password" class="form-control" placeholder="Contraseña" required
+                                id="loginPassword" required><br>
+                        </div>
+                        <button type="button" onclick="login()" class="btn btn-primary">Entrar</button>
                     </form>
                 </article>
+
+
                 <article class="col-lg-6 col-md-6 col-sm-12">
                     <div class=" top">
                         <p>Crear Cuenta</p>
-                        <p>Campos con <span class="text-danger">*</span> son requeridos</p>
-                        <p>Si aun no te unes a esta gran comunidad, Obtén todos los beneficios creando tu propia cuenta.
+                        <p class="fw-light">Si aun no te unes a esta gran comunidad, Obtén todos los beneficios creando
+                            tu propia cuenta.
                         </p>
                     </div>
-                    <form action="http://54.221.147.12:8080//php/procesa_registro.php" method="get">
+                    <form method="get">
                         Dirección de correo<span class="text-danger">*</span><br>
                         <input type="email" class="form-control" placeholder="Dirección de correo" name="email"
                             required><br>
@@ -82,11 +89,12 @@
                                     name="contraseña" required><br>
                             </div>
                             <div class="col">
-                                Confirmar Contraseña<span class="text-danger">*</span><br>
-                                <input type="password" class="form-control" placeholder="Contraseña2" required
+                                Repita su Contraseña<span class="text-danger">*</span><br>
+                                <input type="password" class="form-control" placeholder="Contraseña" required
                                     name="contraseña2" required><br>
                             </div>
                         </div>
+                        <p class="fw-light">Campos con <span class="text-danger">*</span> son requeridos</p>
                         <input type="submit" class="btn btn-primary" type="button" value="Crear Cuenta">
                     </form>
                 </article>
@@ -95,10 +103,11 @@
     </main>
     <footer class="footer"></footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./scripts/mercadoLibre.js"></script>
+    <!-- <script src="./scripts/mercadoLibre.js"></script> -->
     <script src="./scripts/main.js"></script>
-    
+
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/login.js"></script>
 
 </body>
 

@@ -88,12 +88,4 @@ function saludo() {
 }
 
 
-// let Articulo = {
-//     id: "KIKIww1",
-//     nombre: "Tenis Nike",
-//     cantidad: 1,
-//     precio: 500,
-//     foto: 'foto.jpg',
-//     clave: "alojomora"
-// }
 
