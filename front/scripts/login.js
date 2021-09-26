@@ -18,7 +18,7 @@ async function login() {
         userPassword = document.getElementById('loginPassword').value;
         if (validateText(userPassword)) {
             let login = { user: userUser, password: userPassword }
-            console.log(login);
+            
             let token = await fetch("http://localhost:3000/login", {
                 headers: {
                     'Content-Type': 'application/json'
@@ -26,12 +26,13 @@ async function login() {
                 method: 'POST',
                 body: JSON.stringify(login)
             });
-            if (token != undefined) {
-                console.log(token)
+            if (token['status'] == 200) {
                 let cookie = token
                 document.cookie = "token = " + cookie + "; max-age = 3600; path = /";
                 localStorage.setItem("token", token)
-                
+                alert('Bienvenido!!')
+                window.location.href = "./shop.html";
+                                
             } else {
                 alert('Introdusca un email y contraseña validos')
             }
