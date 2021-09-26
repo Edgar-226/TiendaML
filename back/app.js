@@ -15,8 +15,6 @@ const app = express();
 //Middlelware
 app.use(express.json());
 app.use(cors());
-
-
 app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -29,7 +27,7 @@ async function serverStart() {
             console.log(`Sistema iniciado en http://${process.env.HOST}:${process.env.PORT}`);
         });
     } catch (error) {
-        console.error('No se pudo conectar correctamebte con la Base de datos:', error);
+        console.error('No se pudo conectar correctamemte con la Base de datos:', error);
     }
 }
 
