@@ -1,4 +1,4 @@
-USE productos_tecla
+USE anyeddb
 
 SELECT * FROM stock
 
@@ -59,5 +59,36 @@ VALUES
   ('ivanUser','ivan', 'bastida', 'ivan@mail.com',  'ivanpass', 10000000);
 
 SELECT * FROM users
+
 DELETE FROM users WHERE [user] ='ivansito'
 SELECT [user],email,[name] FROM users WHERE [user] ='edgarUser' AND [password] = 'edgarpass'
+
+---------------------------------------------------------------------------
+
+CREATE TABLE cart (
+    id_cart INT NOT NULL IDENTITY(1,1),
+    user_email CHAR(35) NOT NULL,
+    id_product INT NOT NULL,
+    mercado_libre BIT NOT NULL,
+    quantity INT NOT NULL,
+    price INT NOT NULL,
+    PRIMARY KEY (id_cart),
+    FOREIGN KEY (user_email) REFERENCES users(email),
+    FOREIGN KEY (id_product) REFERENCES products(id),
+
+)
+
+
+INSERT INTO cart
+  (user_email,id_product,mercado_libre,quantity,price)
+
+VALUES
+  ('edgar@mail.com',1, 1,1, 180),
+  ('edgar@mail.com',2, 1,1, 180)
+
+  SELECT * FROM cart 
+
+SELECT * FROM cart JOIN users ON cart.user_email = users.email
+;
+
+SELECT * FROM cart LEFT JOIN users ON cart.user_email = users.email AND users.email = 'edgar@mail.com' 

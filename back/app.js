@@ -4,6 +4,7 @@ require('dotenv').config();
 const sequelize = require('./mvc/db/conexion');
 const productsView = require('./mvc/view/productsView')
 const loginView = require('./mvc/view/loginView')
+const cartView = require('./mvc/view/cartView')
 const mLView = require('./mvc/view/mLView')
 
 
@@ -36,6 +37,7 @@ serverStart();
 
 //iniciamos vistas
 productsView(app)
+cartView(app)
 loginView(app)
 mLView(app)
 //Endpoint para obtener el Carrito
