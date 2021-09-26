@@ -52,9 +52,7 @@ async function getMercadoLibre() {
   const data = await resp.json();
   for (let i = 0; i < data['results'].length; i++) {
     mostrarEnPagina(data['results'][i]['id'])
-
   }
-
 }
 
 async function buscarMercadoLibre(busqueda, contenedor) {
