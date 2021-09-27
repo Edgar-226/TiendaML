@@ -20,6 +20,7 @@ async function mostrarCarrito(id, nombre, precio, imagen, cantidad) {
 }
 
 async function getCart() {
+    token = localStorage()
     const result = await fetch('http://localhost:3000/cart');
     const cart = await result.json();
     var total = 0;
