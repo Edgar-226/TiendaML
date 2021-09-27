@@ -70,8 +70,14 @@ $(function () {
     <a href="index.html"><img src="img/logofoot.png" style=width:15% alt=""></a>
     <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
     <a href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i></a>
-</span>`);
-    function ocultarCajas() {
+</span>`
+);
+getToken()
+getCarrito()
+showCart()
+
+
+function ocultarCajas() {
         $("#caja").hide();
         $("#cajaML").hide();
         $("#cajaPolaroid").hide();

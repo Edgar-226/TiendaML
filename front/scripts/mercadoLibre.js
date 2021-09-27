@@ -34,7 +34,7 @@ async function mostrarEnPaginaAnyEd(idProducto, contenedor = 'caja') {
       <h5 class="card-title">${data[0][0]['name']}</h5>
       <p class="card-text">$${data[0][0]['price'].toFixed(2)}</p>
       
-      <button class="btn btn-primary"  onclick="agregarProducto('${data[0][0]['id']}')">Agregar al Carrito</button>
+      <button class="btn btn-primary"  onclick="agregarProducto('${data[0][0]['id']}',false)">Agregar al Carrito</button>
     </div>
   </div>`
     let productoHTML = document.createElement('div');

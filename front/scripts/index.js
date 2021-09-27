@@ -1,12 +1,17 @@
+let carrito = {}
+let token = ''
+
 function getToken() {
-    return localStorage.getItem('token');
+    token = localStorage.getItem('token');
+    //console.log(token)
 }
 function getCarrito() {
-    return localStorage.getItem('carrito');
+    carrito = JSON.parse(localStorage.getItem('carrito'));
+    //console.log(carrito)
 }
 
 async function getCart() {
-    token = getToken()
+
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + token);
 
@@ -19,13 +24,15 @@ async function getCart() {
     fetch("http://localhost:3000/cart", requestOptions)
         .then(response => response.text())
         .then(result => localStorage.setItem('carrito', result))
+        .then(getCarrito())
         .catch(error => console.log('error', error));
+
+
+
 }
 
 
 async function eliminarProducto(id) {
-    console.log(id)
-    token = getToken()
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + token);
     myHeaders.append("Content-Type", "application/json");
@@ -45,19 +52,19 @@ async function eliminarProducto(id) {
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
-        getCart()
-        alert('Producto eliminado');
-        location.reload();
+    getCart()
+    alert('Producto eliminado');
+    location.reload();
 }
 
 
 async function showCart() {
+    getCart()
     total = 0
-    await getCart()
-    cart = await JSON.parse(getCarrito());
+    //carrito = await JSON.parse(getCarrito());
 
 
-    if ($.isEmptyObject(cart)) {
+    if ($.isEmptyObject(carrito)) {
         if (document.getElementById('productosCarrito')) {
             let mensaje = `<h1>El Carrito Esta Vacio</h1>`;
             let productoHTML = document.createElement('div');
@@ -67,9 +74,9 @@ async function showCart() {
         }
     }
     else {
-        for (i in cart[0]) {
-            mostrarCarrito(cart[0][i]['id_product'], cart[0][i]['name_product'], cart[0][i]['price'], cart[0][i]['picture'], cart[0][i]['quantity'])
-            total += cart[0][i]['price'] * cart[0][i]['quantity']
+        for (i in carrito[0]) {
+            mostrarCarrito(carrito[0][i]['id_product'], carrito[0][i]['name_product'], carrito[0][i]['price'], carrito[0][i]['picture'], carrito[0][i]['quantity'])
+            total += carrito[0][i]['price'] * carrito[0][i]['quantity']
         }
         totalhtml = document.getElementById('total-carrito');
         console.log(totalhtml)
@@ -99,40 +106,89 @@ async function mostrarCarrito(id, nombre, precio, imagen, cantidad) {
 }
 
 
-// async function agregarProducto(id) {
-//     let url = 'http://localhost:3000/ml/' + id;
-//     let resp = await fetch(url);
-//     const data = await resp.json();
+async function agregarProducto(id, ml = true) {
+    enExistencia = false
+    getCart()
+    getToken()
+    getCarrito()
+    showCart()
+    console.log(carrito[0])
+    for (let i = 0; i < carrito[0].length; i++) {
+        if (id == carrito[0][i].id_product) {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer " + token);
+            myHeaders.append("Content-Type", "application/json");
 
-//     articulo = {
-//         'id': data['id'],
-//         'nombre': data['title'],
-//         'cantidad': 1,
-//         'precio': data['price'],
-//         'foto': data['pictures'][0]['url'],
-//         'clave': 'alojomora'
-//     }
+            var raw = JSON.stringify({
+                "id": id,
+                "quantity": carrito[0][i].quantity + 1
+            });
 
-//     await fetch('http://localhost:3000/cart', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(articulo)
-//     });
-//     alert(data['title'] + ' Ha sido agregado al Carrito')
-//     getCart()
-// }
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'manual'
+            };
+
+            fetch("http://localhost:3000/cart/update", requestOptions)
+                .then(response => response.text())
+                .then(result => {console.log(result)
+                alert(carrito[0][i].name_product + "A sido agregado al carrito")})
+                .then(() => {
+                    getCart()
+                    getCarrito()
+                    showCart()
+                })
+                .catch(error => console.log('error', error));
+            enExistencia = true
+        }
+    }
+    if (!enExistencia) {
+        if (ml) {
+            let url = 'http://localhost:3000/ml/' + id;
+            let resp = await fetch(url);
+            const data = await resp.json();
+            producto = { id: data.id, name: data.title, ml: 1, quantity: 1, price: data.price, picture: data['pictures'][0]['url'] }
+        } else {
+            let url = 'http://localhost:3000/products/' + id;
+            let resp = await fetch(url);
+            const data = await resp.json();
+            producto = { id: data[0][0].id, name: data[0][0].name, ml: 0, quantity: 1, price: data[0][0].price, picture: data[0][0].picture }
+        }
+
+        console.log(producto);
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + token);
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify(producto);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'manual'
+        };
+        fetch("http://localhost:3000/cart/add", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result)
+                alert(producto.name + "A sido agregado al carrito")
+            })
+            .then(() => {
+                getCart()
+                getCarrito()
+                showCart()
+            })
+            .catch(error => console.log('error', error));
+    }
+}
+
 
 
 
 function saludo() {
     console.log("Hi")
 }
-async function inicio(){
-    await getCart()
-    await showCart()
-    getCarrito()
-}
 
-inicio()
