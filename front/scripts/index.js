@@ -23,7 +23,8 @@ async function getCart() {
 
     fetch("http://localhost:3000/cart", requestOptions)
         .then(response => response.text())
-        .then(result => localStorage.setItem('carrito', result))
+        .then(result => {localStorage.setItem('carrito', result)
+        carrito = JSON.parse(result)})
         .then(getCarrito())
         .catch(error => console.log('error', error));
 
@@ -64,7 +65,7 @@ async function showCart() {
     //carrito = await JSON.parse(getCarrito());
 
 
-    if ($.isEmptyObject(carrito)) {
+    if ($.isEmptyObject(carrito[0])) {
         if (document.getElementById('productosCarrito')) {
             let mensaje = `<h1>El Carrito Esta Vacio</h1>`;
             let productoHTML = document.createElement('div');
@@ -79,9 +80,16 @@ async function showCart() {
             total += carrito[0][i]['price'] * carrito[0][i]['quantity']
         }
         totalhtml = document.getElementById('total-carrito');
-        console.log(totalhtml)
         totalhtml.textContent = `$${total.toFixed(2)}`
-
+        
+        const cajaCarrito = document.getElementById('productosCarrito')
+        if(cajaCarrito){
+        let mensaje = `<button class="btn btn-primary" onclick="saludo()">Finalizar Compra</button>`;
+        let productoHTML = document.createElement('div');
+        productoHTML.classList.add('contenedor-producto', 'center')
+        productoHTML.innerHTML += mensaje;
+        document.getElementById('productosCarrito').appendChild(productoHTML);
+        }
     }
 }
 async function mostrarCarrito(id, nombre, precio, imagen, cantidad) {
@@ -103,6 +111,7 @@ async function mostrarCarrito(id, nombre, precio, imagen, cantidad) {
         productoHTML.innerHTML += producto;
         document.getElementById('productosCarrito').appendChild(productoHTML);
     }
+
 }
 
 
@@ -133,8 +142,10 @@ async function agregarProducto(id, ml = true) {
 
             fetch("http://localhost:3000/cart/update", requestOptions)
                 .then(response => response.text())
-                .then(result => {console.log(result)
-                alert(carrito[0][i].name_product + "A sido agregado al carrito")})
+                .then(result => {
+                    console.log(result)
+                    alert(carrito[0][i].name_product + "A sido agregado al carrito")
+                })
                 .then(() => {
                     getCart()
                     getCarrito()
