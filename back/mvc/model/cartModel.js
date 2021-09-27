@@ -5,7 +5,7 @@ module.exports = class productsModel {
         this.login = login
     }
     async listCart(user) {
-        let result = await sequelize.query("SELECT * FROM cart JOIN users ON cart.user_email = users.email AND users.email = '" + user.email + "'");
+        let result = await sequelize.query("SELECT user_email,id_product,mercado_libre,quantity,price FROM cart JOIN users ON cart.user_email = users.email AND users.email = '" + user.email + "'");
         return result;
     }
     async addCart(user,product) {
