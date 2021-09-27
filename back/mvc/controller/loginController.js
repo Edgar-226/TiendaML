@@ -12,10 +12,10 @@ module.exports.login = async (user) => {
     else {
         return false
     }
-    
+
 }
 
-module.exports.insert = async(user) => {
+module.exports.insert = async (user) => {
     let login = new loginModel();
     let data = await login.insert(user)
     if (data) {

@@ -27,6 +27,7 @@ async function login() {
                 body: JSON.stringify(login)
             });
             if (token['status'] == 200) {
+                console.log(token)
                 let cookie = token
                 document.cookie = "token = " + cookie + "; max-age = 3600; path = /";
                 localStorage.setItem("token", token)

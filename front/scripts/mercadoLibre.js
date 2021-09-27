@@ -26,7 +26,6 @@ async function mostrarEnPaginaAnyEd(idProducto, contenedor = 'caja') {
     let url = 'http://localhost:3000/products/' + idProducto;
     let resp = await fetch(url);
     const data = await resp.json();
-    console.log(await data[0][0]['id'])
     let producto = `
   <div class="border contenido-producto" style="justify-content: center;">
     <img src=${data[0][0]['picture']} class="card-img-top"
@@ -72,9 +71,6 @@ async function buscarAnYEd() {
     mostrarEnPaginaAnyEd(data[0][i]['id'])
   }
 }
-
-
-
 
 buscarMercadoLibre('polaroid', 'cajaPolaroid')
 buscarMercadoLibre('kodak', 'cajaKodak')
