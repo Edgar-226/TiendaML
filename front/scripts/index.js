@@ -1,6 +1,9 @@
 function getToken() {
     return localStorage.getItem('token');
 }
+function getCarrito() {
+    return localStorage.getItem('carrito');
+}
 
 async function getCart() {
     token = getToken()
@@ -15,59 +18,85 @@ async function getCart() {
 
     fetch("http://localhost:3000/cart", requestOptions)
         .then(response => response.text())
-        .then(result =>{ 
-            console.log(result)
-            return result})
+        .then(result => localStorage.setItem('carrito', result))
         .catch(error => console.log('error', error));
 }
 
 
-getCart()
-// async function getCart() {
-//     token = localStorage()
-//     const result = await fetch('http://localhost:3000/cart');
-//     const cart = await result.json();
-//     var total = 0;
+async function eliminarProducto(id) {
+    console.log(id)
+    token = getToken()
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+    myHeaders.append("Content-Type", "application/json");
 
-//     if ($.isEmptyObject(cart)) {
-//         if (document.getElementById('productosCarrito')) {
-//             let mensaje = `<h1>El Carrito Esta Vacio</h1>`;
-//             let productoHTML = document.createElement('div');
-//             productoHTML.classList.add('contenedor-producto', 'center')
-//             productoHTML.innerHTML += mensaje;
-//             document.getElementById('productosCarrito').appendChild(productoHTML);
-//         }
-//     }
-//     else {
-//         for (i in cart) {
-//             mostrarCarrito(cart[i]['id'], cart[i]['nombre'], cart[i]['precio'], cart[i]['foto'], cart[i]['cantidad'])
-//             total += cart[i]['precio'] * cart[i]['cantidad']
-//         }
-//         totalhtml = document.getElementById('total-carrito');
-//         totalhtml.textContent = `$${total.toFixed(2)}`
-//         console.log(totalhtml)
-//     }
-// }
-// async function mostrarCarrito(id, nombre, precio, imagen, cantidad) {
-//     if (document.getElementById('productosCarrito')) {
-//         let producto = `
-//             <div class="contenido-producto border" style="justify-content: center;">
-//                 <img src="${imagen}" class="card-img-top" alt="...">
-//                 <div class="card-body">
-//                     <h5 class="card-title">${nombre}</h5>
-//                     <p class="card-text">Cantidad: ${cantidad}</p>
-//                     <p class="card-text">$${(precio * cantidad).toFixed(2)}</p>
-//                     <button class="btn btn-primary" onclick="eliminarProducto('${id}')">Eliminar</button>
-//                 </div>
-//             </div>`;
+    var raw = JSON.stringify({
+        "id": id
+    });
 
-//         let productoHTML = document.createElement('div');
-//         productoHTML.classList.add('contenedor-producto', 'col-xl-3', 'col-md-4', 'col-sm-6', 'Secondary')
+    var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'manual'
+    };
 
-//         productoHTML.innerHTML += producto;
-//         document.getElementById('productosCarrito').appendChild(productoHTML);
-//     }
-// }
+    fetch("http://localhost:3000/cart/delete", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+        getCart()
+        alert('Producto eliminado');
+        location.reload();
+}
+
+
+async function showCart() {
+    total = 0
+    await getCart()
+    cart = await JSON.parse(getCarrito());
+
+
+    if ($.isEmptyObject(cart)) {
+        if (document.getElementById('productosCarrito')) {
+            let mensaje = `<h1>El Carrito Esta Vacio</h1>`;
+            let productoHTML = document.createElement('div');
+            productoHTML.classList.add('contenedor-producto', 'center')
+            productoHTML.innerHTML += mensaje;
+            document.getElementById('productosCarrito').appendChild(productoHTML);
+        }
+    }
+    else {
+        for (i in cart[0]) {
+            mostrarCarrito(cart[0][i]['id_product'], cart[0][i]['name_product'], cart[0][i]['price'], cart[0][i]['picture'], cart[0][i]['quantity'])
+            total += cart[0][i]['price'] * cart[0][i]['quantity']
+        }
+        totalhtml = document.getElementById('total-carrito');
+        console.log(totalhtml)
+        totalhtml.textContent = `$${total.toFixed(2)}`
+
+    }
+}
+async function mostrarCarrito(id, nombre, precio, imagen, cantidad) {
+    if (document.getElementById('productosCarrito')) {
+        let producto = `
+            <div class="contenido-producto border" style="justify-content: center;">
+                <img src="${imagen}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${nombre}</h5>
+                    <p class="card-text">Cantidad: ${cantidad}</p>
+                    <p class="card-text">$${(precio * cantidad).toFixed(2)}</p>
+                    <button class="btn btn-primary" onclick="eliminarProducto('${id}')">Eliminar</button>
+                </div>
+            </div>`;
+
+        let productoHTML = document.createElement('div');
+        productoHTML.classList.add('contenedor-producto', 'col-xl-3', 'col-md-4', 'col-sm-6', 'Secondary')
+
+        productoHTML.innerHTML += producto;
+        document.getElementById('productosCarrito').appendChild(productoHTML);
+    }
+}
 
 
 // async function agregarProducto(id) {
@@ -96,19 +125,14 @@ getCart()
 // }
 
 
-// async function eliminarProducto(id) {
-//     await fetch('http://localhost:3000/cart/' + id + '/alojomora', {
-//         method: 'DELETE'
-//     });
-//     // const cart = getCart();
-//     // console.log(cart)
-//     alert('Producto eliminado');
-//     location.reload();
-// }
 
 function saludo() {
     console.log("Hi")
 }
+async function inicio(){
+    await getCart()
+    await showCart()
+    getCarrito()
+}
 
-
-
+inicio()
