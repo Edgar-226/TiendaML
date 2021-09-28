@@ -72,10 +72,6 @@ $(function () {
     <a href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i></a>
 </span>`
 );
-getToken()
-getCarrito()
-showCart()
-
 
 function ocultarCajas() {
         $("#caja").hide();
@@ -118,3 +114,8 @@ function ocultarCajas() {
 
 
 })
+
+
+getToken()
+getCarrito()
+showCart()

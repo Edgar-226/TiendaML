@@ -1,11 +1,7 @@
 USE anyeddb
 
-SELECT * FROM stock
 
 
-
-
-DROP TABLE stock
 CREATE TABLE products (
     id INT NOT NULL IDENTITY(1,1),
     [name] VARCHAR (50),
@@ -16,16 +12,13 @@ CREATE TABLE products (
 )
 SELECT * FROM products
 
-
 INSERT INTO products ([name],stock,price,picture) VALUES ('Polaroid clasica edicion especial',1,180,'img/i5s.webp')
 INSERT INTO products ([name],stock,price,picture) VALUES ('Camara polariod instantanea',10,1220,'img/i3s.webp')
 INSERT INTO products ([name],stock,price,picture) VALUES ('Polaroid clasica',5,1500,'img/i2s.webp')
 INSERT INTO products ([name],stock,price,picture) VALUES ('Carrete para camara antigua',20,699,'img/i1s.webp')
 INSERT INTO products ([name],stock,price,picture) VALUES ('Estuche para lentes',10,530,'img/i4s.webp')
 
-
 SELECT * FROM products
-
 DROP TABLE users
 CREATE TABLE users
 (

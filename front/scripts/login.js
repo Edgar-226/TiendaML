@@ -44,8 +44,8 @@ async function login() {
                     alert('Bienvenido!!')
                     window.location.href = "./shop.html";
                 })
-                .catch(error => console.log('error', error));
-
+                .catch(error =>{ console.log('error', error)});
+                            
 
         } else {
             alert('Introdusca su Contraseña')

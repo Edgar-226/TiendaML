@@ -12,7 +12,6 @@ module.exports = async (app) => {
         const product = req.body;
         let user = jwt.verify(token, process.env.SECRETKEY);
         res.send(await cartController.findCart(user.data, product));
-
     });
     app.post('/cart/add', autentication.userAutentication, async (req, res) => {
         const token = req.headers.authorization.split(' ')[1];
@@ -33,6 +32,6 @@ module.exports = async (app) => {
         res.send(await cartController.deleteCart(user.data, product));
     });
 
-    
+
 
 }
