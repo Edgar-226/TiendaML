@@ -1,0 +1,19 @@
+hi
+
+
+Realizar un login para Compradores y Usuario
+Realizar un proceso de venta
+
+HOST = 'localhost'
+PORT = 3000
+
+DB_HOST = 'localhost'
+DB_PORT = 1433
+
+DB_USR = 'sa'
+
+DB_PASS = 'Password123$'
+
+SECRETKEY = 'teclakey'
+
+url1 = 'https://api.mercadolibre.com/sites/MLM/search?category=MLM1039&offset=10&limit=11'
