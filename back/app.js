@@ -35,10 +35,10 @@ async function serverStart() {
 serverStart();
 
 
-//iniciamos vistas
+// //iniciamos vistas
 productsView(app)
 cartView(app)
 loginView(app)
 mLView(app)
-//Endpoint para obtener el Carrito
+// //Endpoint para obtener el Carrito
 

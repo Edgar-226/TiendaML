@@ -1,9 +1,13 @@
 USE anyeddb
 
+SELECT * FROM stock
 
 
+
+
+DROP TABLE products
 CREATE TABLE products (
-    id INT NOT NULL IDENTITY(1,1),
+    id CHAR (30) NOT NULL ,
     [name] VARCHAR (50),
     stock INT NOT NULL,    
     price INT NOT NULL,
@@ -12,13 +16,16 @@ CREATE TABLE products (
 )
 SELECT * FROM products
 
-INSERT INTO products ([name],stock,price,picture) VALUES ('Polaroid clasica edicion especial',1,180,'img/i5s.webp')
-INSERT INTO products ([name],stock,price,picture) VALUES ('Camara polariod instantanea',10,1220,'img/i3s.webp')
-INSERT INTO products ([name],stock,price,picture) VALUES ('Polaroid clasica',5,1500,'img/i2s.webp')
-INSERT INTO products ([name],stock,price,picture) VALUES ('Carrete para camara antigua',20,699,'img/i1s.webp')
-INSERT INTO products ([name],stock,price,picture) VALUES ('Estuche para lentes',10,530,'img/i4s.webp')
+
+INSERT INTO products (id,[name],stock,price,picture) VALUES ('1','Polaroid clasica edicion especial',1,180,'img/i5s.webp')
+INSERT INTO products (id,[name],stock,price,picture) VALUES ('2','Camara polariod instantanea',10,1220,'img/i3s.webp')
+INSERT INTO products (id,[name],stock,price,picture) VALUES ('3','Polaroid clasica',5,1500,'img/i2s.webp')
+INSERT INTO products (id,[name],stock,price,picture) VALUES ('4','Carrete para camara antigua',20,699,'img/i1s.webp')
+INSERT INTO products (id,[name],stock,price,picture) VALUES ('5','Estuche para lentes',10,530,'img/i4s.webp')
+
 
 SELECT * FROM products
+
 DROP TABLE users
 CREATE TABLE users
 (
@@ -40,9 +47,9 @@ INSERT INTO users
   ([user],[name],last_name,email,[password],tel)
 
 VALUES
-  
+  ('LeonardoUser','Leonardo', 'Figueroa', 'leo@mail.com',  'leopass', 11111111),
   ('cinthyaUser','cinthya', 'miranda', 'cinthya@mail.com',  'cinthyapass', 22222222),
-  ('edgarUser','edgar', 'bastida', 'edgar@mail.com',  'edgarpass', 33333333);
+  ('edgarUser','edgar', 'calderas', 'edgar@mail.com',  'edgarpass', 33333333),
   ('carlaUser','carla', 'valdez', 'karla@mail.com',  'karlapass', 44444444),
   ('alaniUser','alani', 'menchelli', 'alani@mail.com',  'alanipass', 55555555),
   ('marioUser','mario', 'flores', 'mario@mail.com',  'mariopass', 66666666),
@@ -57,31 +64,39 @@ DELETE FROM users WHERE [user] ='ivansito'
 SELECT [user],email,[name] FROM users WHERE [user] ='edgarUser' AND [password] = 'edgarpass'
 
 ---------------------------------------------------------------------------
+DROP TABLE cart
 
 CREATE TABLE cart (
     id_cart INT NOT NULL IDENTITY(1,1),
     user_email CHAR(35) NOT NULL,
-    id_product INT NOT NULL,
+    id_product CHAR(30) NOT NULL,
+    name_product VARCHAR (100),
     mercado_libre BIT NOT NULL,
     quantity INT NOT NULL,
     price INT NOT NULL,
+    picture VARCHAR(100),
     PRIMARY KEY (id_cart),
     FOREIGN KEY (user_email) REFERENCES users(email),
-    FOREIGN KEY (id_product) REFERENCES products(id),
-
+    
 )
 
+DROP TABLE cart;
+GO
 
-INSERT INTO cart
-  (user_email,id_product,mercado_libre,quantity,price)
+INSERT INTO cart (user_email,id_product,name_product,mercado_libre,quantity,price,picture) VALUES ('edgar@mail.com',1,'Polaroid clasica edicion especial',0,1,180,'img/i5s.webp');
 
-VALUES
-  ('edgar@mail.com',1, 1,1, 180),
-  ('edgar@mail.com',2, 1,1, 180)
 
-  SELECT * FROM cart 
+  SELECT * FROM cart ;
 
-SELECT * FROM cart JOIN users ON cart.user_email = users.email
-;
+SELECT * FROM cart LEFT JOIN users ON cart.user_email = users.email;
 
-SELECT * FROM cart LEFT JOIN users ON cart.user_email = users.email AND users.email = 'edgar@mail.com' 
+SELECT * FROM cart JOIN users ON cart.user_email = users.email AND  cart.id_product = '1';
+
+DELETE FROM cart WHERE user_email = 'edgar@mail.com'
+ SELECT * FROM cart JOIN users ON cart.user_email = users.email AND users.email = 'edgar@mail.com                '
+
+ SELECT user_email,id_product,mercado_libre,quantity,price FROM cart JOIN users ON cart.user_email = users.email AND users.email = 'edgar@mail.com'
+
+ INSERT INTO cart (user_email,id_product,name_product,mercado_libre,quantity,price,picture) VALUES ('cinthya@mail.com                   ','MLM809328360','Mini Caja De Luz Para Fotografía Portátil, Plegable',1,1, 189.69, 'http://http2.mlstatic.com/D_862875-MLM43821266350_102020-O.jpg')
+
+ INSERT INTO cart (user_email,id_product,name_product,mercado_libre,quantity,price,picture) VALUES ('cinthya@mail.com                   ','MLM809328360','Mini Caja De Luz Para Fotografía Portátil, Plegable',1,1, 189.69, 'http://http2.mlstatic.com/D_862875-MLM43821266350_102020-O.jpg')
