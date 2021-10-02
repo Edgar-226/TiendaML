@@ -40,9 +40,9 @@ INSERT INTO users
   ([user],[name],last_name,email,[password],tel)
 
 VALUES
-  ('LeonardoUser','Leonardo', 'Figueroa', 'leo@mail.com',  'leopass', 11111111),
+  
   ('cinthyaUser','cinthya', 'miranda', 'cinthya@mail.com',  'cinthyapass', 22222222),
-  ('edgarUser','edgar', 'calderas', 'edgar@mail.com',  'edgarpass', 33333333),
+  ('edgarUser','edgar', 'bastida', 'edgar@mail.com',  'edgarpass', 33333333);
   ('carlaUser','carla', 'valdez', 'karla@mail.com',  'karlapass', 44444444),
   ('alaniUser','alani', 'menchelli', 'alani@mail.com',  'alanipass', 55555555),
   ('marioUser','mario', 'flores', 'mario@mail.com',  'mariopass', 66666666),
