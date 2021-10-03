@@ -116,6 +116,5 @@ function ocultarCajas() {
 })
 
 
-getToken()
-getCarrito()
-showCart()
+
+getCart()

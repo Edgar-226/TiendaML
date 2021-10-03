@@ -1,17 +1,12 @@
 let carrito = {}
-let token = ''
-
 function getToken() {
-    token = localStorage.getItem('token');
+    return localStorage.getItem('token');
     //console.log(token)
-}
-function getCarrito() {
-    carrito = JSON.parse(localStorage.getItem('carrito'));
-    //console.log(carrito)
 }
 
 async function getCart() {
-
+    let token =  getToken()
+    
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + token);
 
@@ -24,50 +19,23 @@ async function getCart() {
     fetch("http://localhost:3000/cart", requestOptions)
         .then(response => response.text())
         .then(result => {
-            localStorage.setItem('carrito', result)
-            carrito = JSON.parse(result)
+            carrito = JSON.parse(result)  
+            console.log(carrito)
+            showCart()                   
         })
-        .then(getCarrito())
         .catch(error => console.log('error', error));
-
-
-
 }
 
 
-async function eliminarProducto(id) {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + token);
-    myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
-        "id": id
-    });
-
-    var requestOptions = {
-        method: 'DELETE',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'manual'
-    };
-
-    fetch("http://localhost:3000/cart/delete", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
-    getCart()
-    alert('Producto eliminado');
-    location.reload();
-}
 
 
 async function showCart() {
-    getCart()
-    total = 0
-    //carrito = await JSON.parse(getCarrito());
-
-
+    let total = 0
+    
+    
     if ($.isEmptyObject(carrito[0])) {
+
         if (document.getElementById('productosCarrito')) {
             let mensaje = `<h1>El Carrito Esta Vacio</h1>`;
             let productoHTML = document.createElement('div');
@@ -119,18 +87,18 @@ async function mostrarCarrito(id, nombre, precio, imagen, cantidad) {
 
 async function agregarProducto(id, ml = true) {
     enExistencia = false
-    console.log(token)
+    let token = getToken()
+    await getCart()
+
     if (token == null) {
         console.log(token)
         alert("Acceda a su cuenta")
         window.location.href = "./login.html";
     }
     else {
-        getCart()
-        getToken()
-        getCarrito()
-        showCart()
-        console.log(carrito[0])
+        
+        
+        console.log(await carrito[0])
         for (let i = 0; i < carrito[0].length; i++) {
             if (id == carrito[0][i].id_product) {
                 var myHeaders = new Headers();
@@ -158,7 +126,7 @@ async function agregarProducto(id, ml = true) {
                     .then(() => {
                         getCart()
                         getCarrito()
-                        showCart()
+                        
                     })
                     .catch(error => console.log('error', error));
                 enExistencia = true
@@ -198,7 +166,6 @@ async function agregarProducto(id, ml = true) {
                 })
                 .then(() => {
                     getCart()
-                    getCarrito()
                     showCart()
                 })
                 .catch(error => console.log('error', error));
@@ -206,6 +173,33 @@ async function agregarProducto(id, ml = true) {
     }
 
 }
+
+async function eliminarProducto(id) {
+    let token = getToken()
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "id": id
+    });
+
+    var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'manual'
+    };
+
+    fetch("http://localhost:3000/cart/delete", requestOptions)
+        
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+    getCart()
+    alert('Producto eliminado');
+    location.reload();
+}
+
 
 
 

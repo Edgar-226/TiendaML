@@ -87,4 +87,4 @@ function strhash(str) {
     return hash;
 }
 
-console.log(strhash('hi'))
+
