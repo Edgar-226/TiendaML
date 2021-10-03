@@ -71,9 +71,9 @@ $(function () {
     <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
     <a href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i></a>
 </span>`
-);
+    );
 
-function ocultarCajas() {
+    function ocultarCajas() {
         $("#caja").hide();
         $("#cajaML").hide();
         $("#cajaPolaroid").hide();
@@ -93,7 +93,7 @@ function ocultarCajas() {
 
     $(".BotonAnyEd").click(function () {
         ocultarCajas()
-        $("#caja").show();        
+        $("#caja").show();
     });
     $(".BotonMercadoL").click(function () {
         ocultarCajas()
@@ -101,11 +101,11 @@ function ocultarCajas() {
     });
     $(".BotonPolaroid").click(function () {
         ocultarCajas()
-        $("#cajaPolaroid").show();        
+        $("#cajaPolaroid").show();
     });
     $(".BotonKodak").click(function () {
         ocultarCajas()
-        $("#cajaKodak").show();   
+        $("#cajaKodak").show();
     });
     $(".BotonNikon").click(function () {
         ocultarCajas()
