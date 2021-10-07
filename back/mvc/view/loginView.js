@@ -5,6 +5,10 @@ const jwt = require("jsonwebtoken")
 
 
 module.exports = async (app) => {
+    app.get('/login/select', autentication.userAutentication, async (req, res) => {
+        res.send(await loginController.listUsers())
+    });
+
     app.post('/login', validation.loginValidation, async (req, res) => {
         let user = req.body;
         let token = await loginController.login(user)
@@ -34,7 +38,6 @@ module.exports = async (app) => {
         let user = jwt.verify(token, process.env.SECRETKEY);
         res.send(await loginController.deleteLogin(user.data, login));
     });
-
 
 };
 

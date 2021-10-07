@@ -1,6 +1,11 @@
 const jwt = require('jsonwebtoken');
 const loginModel = require('../model/loginModel');
 
+module.exports.listUsers = async () => {
+    let response = new loginModel();
+    let result =await response.listUsers()
+    return result;
+}
 
 module.exports.login = async (user) => {
     let login = new loginModel();//Cada usuario necesita su login
@@ -49,3 +54,4 @@ module.exports.deleteLogin = async (user, login) => {
         return "No se pudo borrar la cuenta"
     }
 }
+
