@@ -26,3 +26,26 @@ module.exports.insert = async (user) => {
         return "Regristro fallido Try again"
     }
 }
+
+module.exports.updateLogin = async (user, login) => {
+    let response = new loginModel();
+    let data = await response.updateLogin(user, login)
+    if (data != false) {
+        token = jwt.sign({ data }, process.env.SECRETKEY);
+        return token;
+    }
+    else {
+        return "No se pudo realizar el cambio"
+    }
+}
+
+module.exports.deleteLogin = async (user, login) => {
+    let response = new loginModel();
+    let data = await response.deleteLogin(user, login)
+    if (data != false) {
+        return "Usuario eliminado correctamente"
+    }
+    else {
+        return "No se pudo borrar la cuenta"
+    }
+}

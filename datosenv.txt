@@ -1,6 +1,5 @@
 hi
 
-
 Realizar un login para Compradores y Usuario
 Realizar un proceso de venta
 
