@@ -72,32 +72,32 @@
                         <div class="row">
                             <div class="col">
                                 Nombre<span class="text-danger">*</span><br>
-                                <input type="text" class="form-control" placeholder="Nombre" required id="Newname"
+                                <input type="text" class="form-control" placeholder="Nombre" required id="newName"
                                     required><br>
                             </div>
                             <div class="col">
                                 Apellido<span class="text-danger">*</span><br>
-                                <input type="text" class="form-control" placeholder="Apellido" required name="apellido"
+                                <input type="text" class="form-control" placeholder="Apellido" required id="newLastname"
                                     required><br>
                             </div>
                         </div>
                         Telefono<span class="text-danger">*</span>
-                        <input type="text" class="form-control" placeholder="Telefono" required name="telefono"
+                        <input type="text" class="form-control" placeholder="Telefono" required id="newPhone"
                             required><br>
                         <div class="row">
                             <div class="col">
                                 Contraseña<span class="text-danger">*</span><br>
                                 <input type="password" class="form-control" placeholder="Contraseña" required
-                                    name="contraseña" required><br>
+                                    id="newPass" required><br>
                             </div>
                             <div class="col">
                                 Repita su Contraseña<span class="text-danger">*</span><br>
                                 <input type="password" class="form-control" placeholder="Contraseña" required
-                                    name="contraseña2" required><br>
+                                    id="newPass2" required><br>
                             </div>
                         </div>
                         <p class="fw-light">Campos con <span class="text-danger">*</span> son requeridos</p>
-                        <input type="submit" class="btn btn-primary" type="button" value="Crear Cuenta">
+                        <button type="button" onclick="createUser()" class="btn btn-primary">Crear cuenta</button>
                     </form>
                 </article>
             </div>
