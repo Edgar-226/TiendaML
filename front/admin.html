@@ -28,9 +28,48 @@
     <header class="header"></header>
 
     <div class="container">
-        <div id="productosCarrito" class="row g-2 secondary">
+        <button class="btn btn-outline-success" id="crear-producto">Crear producto</button>
 
+        <div id="popup" style="display: none;">
+            <div class="content-popup">
+                <div class="close"><a href="#" id="close"><img src="img/d.png" /></a></div>
+                <div>
+                    <div class="container center">
+                        <img src="img/logohead.png" style=width:40% alt="">
+                    </div>
+                    <h2>Nuevo Producto</h2>
+                    <form>
+                        <div class="row">
+                        </div>
+                        <p id="listaTituloFlujo">Titulo</p>
+                        <div class="row">
+                            <div class="col-md-12 login-from-row">
+                                <p>Nombre</p>
+                                <input id="newProductName" name="valor" type="text" placeholder="Nombre" required />
+                                <p>Stock</p>
+                                <input id="newProductStock" name="valor" type="number" placeholder="Stock" required />
+                                <p>Precio</p>
+                                <input id="newProductPrice" name="valor" type="number" placeholder="Precio" required />
+                                <p>Foto</p>
+                                <input id="newProductPicture" name="valor" type="text" placeholder="URL Imagen" required />
+                            </div>
+                            <div class="col-md-12 login-from-row">
+                                <button type="button" onclick="agregarProducto()"
+                                    class="btn btn-outline-success">Agregar</button>
+                            </div>
+                        </div>
+                </div>
+                </form>
+                <div style="float:left; width:100%;">
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="popup-overlay"></div>
+    <div id="cajaAdmin" class="row g-2 secondary">
+
+    </div>
+
     </div>
 
     <section>
@@ -45,6 +84,7 @@
     <script src="./scripts/mercadoLibre.js"></script>
     <script src="./scripts/index.js"></script>
     <script src="./scripts/main.js"></script>
+    <script src="./scripts/admin.js"></script>
 
 
 

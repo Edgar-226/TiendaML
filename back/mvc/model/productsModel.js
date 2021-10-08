@@ -10,7 +10,7 @@ module.exports = class productsModel {
     }
     
     async find (productId){
-        let result = await sequelize.query("SELECT * FROM products WHERE id ="+ productId);
+        let result = await sequelize.query("SELECT * FROM products WHERE id ='"+ productId+"'");
         return result;
     }
 
@@ -20,7 +20,7 @@ module.exports = class productsModel {
     }
     async insert(product){
         console.log(product)
-        let result = await sequelize.query("INSERT INTO products ([name],stock,price,picture) VALUES ('"+ product.name+"','"+product.stock+"',"+product.price+",'"+product.picture+"')");
+        let result = await sequelize.query("INSERT INTO products (id,[name],stock,price,picture) VALUES ('"+product.id+"','"+ product.name+"','"+product.stock+"',"+product.price+",'"+product.picture+"')");
         return result;
     }
     async update(product){

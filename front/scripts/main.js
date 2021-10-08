@@ -114,9 +114,21 @@ $(function () {
         $("#cajaNikon").show();
     });
 
+    $('#crear-producto').on('click', function () {
+        
+        $('#popup').fadeIn('slow');
+        $('.popup-overlay').fadeIn('slow');
+        $('.popup-overlay').height($(window).height());
+        return false;
+    });
+    $('#close').on('click', function () {
+        $('#popup').fadeOut('slow');
+        $('.popup-overlay').fadeOut('slow');
+        return false;
+    });
+    
 
 })
-
 
 
 getCart()
