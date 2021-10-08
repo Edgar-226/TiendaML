@@ -44,6 +44,7 @@ async function login() {
                 .then(response => response.text())
                 .then(result => {
                     console.log(result)
+                    localStorage.removeItem("tokenAdmin");
                     localStorage.setItem("token", result)
                 })
                 .then(() => {

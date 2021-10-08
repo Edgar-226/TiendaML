@@ -6,6 +6,16 @@ function validateText(valor) {
         return true
     }
 }
+
+
+function validarAdmin(){
+    if(!localStorage.getItem("tokenAdmin")){
+        window.location.href = "./loginAdmin.html";
+    }
+}
+
+
+
 async function mostrarEnPaginaAnyEd(idProducto, contenedor = 'cajaAdmin') {
     if (document.getElementById(contenedor)) {
         let url = 'http://localhost:3000/products/' + idProducto;
@@ -50,7 +60,7 @@ async function agregarProducto() {
         newProductPicture = document.getElementById("newProductPicture").value;
         if (validateText(newProductPicture)) {
             var myHeaders = new Headers();
-            myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+            myHeaders.append("Authorization", "Bearer " + localStorage.getItem("tokenAdmin"));
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
@@ -92,7 +102,7 @@ async function agregarProducto() {
 async function eliminarProducto(name) {
 
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+    myHeaders.append("Authorization", "Bearer " + localStorage.getItem("tokenAdmin"));
 
     var requestOptions = {
         method: 'DELETE',
@@ -111,3 +121,5 @@ async function eliminarProducto(name) {
         })
         .catch(error => console.log('error', error));
 }
+
+validarAdmin()
