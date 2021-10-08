@@ -29,6 +29,7 @@ async function mostrarEnPaginaAnyEd(idProducto, contenedor = 'cajaAdmin') {
             <h5 class="card-title">${data[0][0]['name']}</h5>
             <p class="card-text">$${data[0][0]['price'].toFixed(2)}</p>
             <p class="card-text">Stock: ${data[0][0]['stock']}</p>
+            
             <button class="btn btn-outline-danger"  onclick="eliminarProducto('${data[0][0]['name']}')">Eliminar producto</button>
             
         </div>
@@ -100,6 +101,29 @@ async function agregarProducto() {
 }
 
 async function eliminarProducto(name) {
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + localStorage.getItem("tokenAdmin"));
+
+    var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        redirect: 'manual'
+    };
+
+    fetch("http://localhost:3000/products/delete/" + name, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            console.log(result)
+            alert('Producto Eliminado')
+            buscarAnYEd()
+            $('#popup').fadeOut('slow');
+            $('.popup-overlay').fadeOut('slow');
+        })
+        .catch(error => console.log('error', error));
+}
+
+async function actualizarProducto(name) {
 
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + localStorage.getItem("tokenAdmin"));
