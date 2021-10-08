@@ -65,24 +65,29 @@ async function createUser() {
                 newLastname = document.getElementById('newLastname').value;
                 if (validateText(newLastname)) {
                     newPhone = document.getElementById('newPhone').value;
+                    console.log(isNaN(newPhone))
                     if (!isNaN(newPhone)) {
+                        
                         if (validateText(newLastname)) {
                             newPass = document.getElementById('newPass').value;
                             if (validateText(newPass)) {
                                 newPass2 = document.getElementById('newPass2').value;
-                            if (validateText(newPass2)) {
-                                       
+                            if (validateText(newPass2)) {                                       
+                                if(newPass == newPass2){
+                                    alert('datos correctos')
+                                }
+                                else{
+                                    alert('los password no son iguales')
+                                }
                             }
                             else {
                                 alert('Ingrese su Password')
-                            }
-                                
+                            }                                
                             }
                             else {
                                 alert('Ingrese su Password')
                             }
                         }
-
                     }
                     else {
                         alert('Ingrese su Telefono')
@@ -103,7 +108,6 @@ async function createUser() {
     else {
         alert('Ingrese su usuario')
     }
-
 }
 
 
