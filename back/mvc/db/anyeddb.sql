@@ -3,6 +3,28 @@ CREATE DATABASE anyeddb
 USE anyeddb
 
 
+CREATE TABLE admins(
+  id_admin int NOT NULL IDENTITY(1,1),
+  [user] CHAR(30) NOT NULL,
+  [name] CHAR(30) NOT NULL,
+  last_name CHAR(30) NOT NULL,
+  email CHAR(35) NOT NULL,
+  [password] CHAR(100) NOT NULL,
+  tel CHAR (10) NOT NULL,
+  PRIMARY KEY (email)
+)
+
+
+INSERT INTO admins
+  ([user],[name],last_name,email,[password],tel)
+
+VALUES
+  ('cinthyaAdmin','cinthya', 'miranda', 'cinthya@mail.com',  'cinthyapass', 22222222),
+  ('edgarAdmin','edgar', 'calderas', 'edgar@mail.com',  'edgarpass', 33333333);
+
+  SELECT *
+FROM admins
+
 CREATE TABLE products (
     id CHAR (30) NOT NULL ,
     [name] VARCHAR (50),
