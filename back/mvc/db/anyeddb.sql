@@ -1,11 +1,8 @@
+CREATE DATABASE anyeddb
+
 USE anyeddb
 
-SELECT * FROM stock
 
-
-
-
-DROP TABLE products
 CREATE TABLE products (
     id CHAR (30) NOT NULL ,
     [name] VARCHAR (50),
@@ -26,7 +23,6 @@ INSERT INTO products (id,[name],stock,price,picture) VALUES ('5','Estuche para l
 
 SELECT * FROM products
 
-DROP TABLE users
 CREATE TABLE users
 (
   id_user int NOT NULL IDENTITY(1,1),
@@ -35,13 +31,12 @@ CREATE TABLE users
   last_name CHAR(30) NOT NULL,
   email CHAR(35) NOT NULL,
   [password] CHAR(100) NOT NULL,
-  tel int NOT NULL,
+  tel CHAR (10) NOT NULL,
   PRIMARY KEY (email)
 )
 SELECT *
 FROM users
 
------------------------------------------------------------
 
 INSERT INTO users
   ([user],[name],last_name,email,[password],tel)
@@ -60,11 +55,7 @@ VALUES
 
 SELECT * FROM users
 
-DELETE FROM users WHERE [user] ='ivansito'
 SELECT [user],email,[name] FROM users WHERE [user] ='edgarUser' AND [password] = 'edgarpass'
-
----------------------------------------------------------------------------
-DROP TABLE cart
 
 CREATE TABLE cart (
     id_cart INT NOT NULL IDENTITY(1,1),
@@ -79,9 +70,6 @@ CREATE TABLE cart (
     FOREIGN KEY (user_email) REFERENCES users(email),
     
 )
-
-DROP TABLE cart;
-GO
 
 INSERT INTO cart (user_email,id_product,name_product,mercado_libre,quantity,price,picture) VALUES ('edgar@mail.com',1,'Polaroid clasica edicion especial',0,1,180,'img/i5s.webp');
 
@@ -100,3 +88,11 @@ DELETE FROM cart WHERE user_email = 'edgar@mail.com'
  INSERT INTO cart (user_email,id_product,name_product,mercado_libre,quantity,price,picture) VALUES ('cinthya@mail.com                   ','MLM809328360','Mini Caja De Luz Para Fotografía Portátil, Plegable',1,1, 189.69, 'http://http2.mlstatic.com/D_862875-MLM43821266350_102020-O.jpg')
 
  INSERT INTO cart (user_email,id_product,name_product,mercado_libre,quantity,price,picture) VALUES ('cinthya@mail.com                   ','MLM809328360','Mini Caja De Luz Para Fotografía Portátil, Plegable',1,1, 189.69, 'http://http2.mlstatic.com/D_862875-MLM43821266350_102020-O.jpg')
+
+ SELECT *
+ FROM users
+
+ INSERT INTO users ([user],[name],last_name,email,[password],tel) VALUES ('bebe','an', 'Mir', 'an@hotmail.com','123', 5527562499)
+
+ DROP TABLE cart
+ DROP TABLE users

@@ -2,6 +2,12 @@ function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
+
+function validateTel(tel) {
+    const re = /^\(?(\d{3})\)?[-]?(\d{3})[-]?(\d{4})$/
+    return re.test(tel);
+}
+
 function validateText(valor) {
     if (valor == null || valor.length == 0 || /^\s+$/.test(valor)) {
         return false;
@@ -65,24 +71,52 @@ async function createUser() {
                 newLastname = document.getElementById('newLastname').value;
                 if (validateText(newLastname)) {
                     newPhone = document.getElementById('newPhone').value;
-                    console.log(isNaN(newPhone))
-                    if (!isNaN(newPhone)) {
-                        
+                    if (validateTel(newPhone)) {
+
                         if (validateText(newLastname)) {
                             newPass = document.getElementById('newPass').value;
                             if (validateText(newPass)) {
                                 newPass2 = document.getElementById('newPass2').value;
-                            if (validateText(newPass2)) {                                       
-                                if(newPass == newPass2){
-                                    alert('datos correctos')
+                                if (validateText(newPass2)) {
+                                    if (newPass == newPass2) {
+                                        var myHeaders = new Headers();
+                                        myHeaders.append("Content-Type", "application/json");
+
+                                        var raw = JSON.stringify({
+                                            "user": newUser,
+                                            "name": newName,
+                                            "lastmane": newLastname,
+                                            "email": newEmail,
+                                            "password": newPass,
+                                            "tel": newPhone
+                                        });
+
+                                        var requestOptions = {
+                                            method: 'POST',
+                                            headers: myHeaders,
+                                            body: raw,
+                                            redirect: 'follow'
+                                        };
+
+                                        fetch("http://localhost:3000/login/insert", requestOptions)
+                                            .then(response => response.text())
+                                            .then(result => {
+                                                console.log(result)
+                                                localStorage.setItem("token", result)
+                                            })
+                                            .then(() => {
+                                                alert('Su registro ha sido un exito!!')
+                                                window.location.href = "./shop.html";
+                                            })
+                                            .catch(error => { console.log('error', error) });
+                                    }
+                                    else {
+                                        alert('los password no son iguales')
+                                    }
                                 }
-                                else{
-                                    alert('los password no son iguales')
+                                else {
+                                    alert('Ingrese su Password')
                                 }
-                            }
-                            else {
-                                alert('Ingrese su Password')
-                            }                                
                             }
                             else {
                                 alert('Ingrese su Password')
@@ -109,9 +143,6 @@ async function createUser() {
         alert('Ingrese su usuario')
     }
 }
-
-
-
 
 
 

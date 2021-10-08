@@ -40,7 +40,9 @@ $(function () {
                                         <li class="nav-item">
                                             <a class="nav-link" href="login.html">Entrar</a>
                                         </li>
-                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="admin.html">Admin</a>
+                                        </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="help.html">Ayuda</a>
                                         </li>
