@@ -32,6 +32,7 @@ async function mostrarEnPaginaAnyEd(idProducto, contenedor = 'cajaAdmin') {
 }
 
 async function buscarAnYEd() {
+    $("#cajaAdmin").empty()
     let url = 'http://localhost:3000/products';
     let resp = await fetch(url);
     const data = await resp.json();
@@ -72,7 +73,9 @@ async function agregarProducto() {
                 .then(result => {
                     console.log(result)
                     alert('Producto Agregado')
-                    location.reload();
+                    buscarAnYEd()
+                    $('#popup').fadeOut('slow');
+                    $('.popup-overlay').fadeOut('slow');
                 })
                 .catch(error => console.log('error', error));
         }
@@ -87,7 +90,7 @@ async function agregarProducto() {
 }
 
 async function eliminarProducto(name) {
-    
+
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
 
@@ -102,7 +105,9 @@ async function eliminarProducto(name) {
         .then(result => {
             console.log(result)
             alert('Producto Eliminado')
-            location.reload();
+            buscarAnYEd()
+            $('#popup').fadeOut('slow');
+            $('.popup-overlay').fadeOut('slow');
         })
         .catch(error => console.log('error', error));
 }
