@@ -44,8 +44,8 @@ async function login() {
                     alert('Bienvenido!!')
                     window.location.href = "./shop.html";
                 })
-                .catch(error =>{ console.log('error', error)});
-                            
+                .catch(error => { console.log('error', error) });
+
 
         } else {
             alert('Introdusca su Contraseña')
@@ -53,6 +53,57 @@ async function login() {
     } else {
         alert('Introdusca su Usuario Correctamente')
     }
+}
+
+async function createUser() {
+    newUser = document.getElementById('newUser').value;
+    if (validateText(newUser)) {
+        newEmail = document.getElementById('newEmail').value;
+        if (validateEmail(newEmail)) {
+            newName = document.getElementById('newName').value;
+            if (validateText(newName)) {
+                newLastname = document.getElementById('newLastname').value;
+                if (validateText(newLastname)) {
+                    newPhone = document.getElementById('newPhone').value;
+                    if (!isNaN(newPhone)) {
+                        if (validateText(newLastname)) {
+                            newPass = document.getElementById('newPass').value;
+                            if (validateText(newPass)) {
+                                newPass2 = document.getElementById('newPass2').value;
+                            if (validateText(newPass2)) {
+                                       
+                            }
+                            else {
+                                alert('Ingrese su Password')
+                            }
+                                
+                            }
+                            else {
+                                alert('Ingrese su Password')
+                            }
+                        }
+
+                    }
+                    else {
+                        alert('Ingrese su Telefono')
+                    }
+                }
+                else {
+                    alert('Ingrese su Apellido')
+                }
+            }
+            else {
+                alert('Ingrese su nombre')
+            }
+        }
+        else {
+            alert('Ingrese su Email')
+        }
+    }
+    else {
+        alert('Ingrese su usuario')
+    }
+
 }
 
 
