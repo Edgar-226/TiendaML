@@ -6,6 +6,7 @@ function getToken() {
 
 async function getCart() {
     let token = getToken()
+    if(token){
 
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + token);
@@ -24,6 +25,7 @@ async function getCart() {
             showCart()
         })
         .catch(error => console.log('error', error));
+    }
 }
 
 

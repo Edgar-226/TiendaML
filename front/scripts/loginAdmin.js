@@ -1,3 +1,5 @@
+const { response } = require("express");
+const { result } = require("lodash");
 
 function validateText(valor) {
     if (valor == null || valor.length == 0 || /^\s+$/.test(valor)) {
@@ -8,8 +10,8 @@ function validateText(valor) {
     }
 }
 
-function validarAdmin(){
-    if(localStorage.getItem("tokenAdmin")){
+function validarAdmin() {
+    if (localStorage.getItem("tokenAdmin")) {
         window.location.href = "./admin.html";
     }
 }
@@ -17,6 +19,7 @@ function validarAdmin(){
 validarAdmin()
 
 async function loginAdmin() {
+    let temToken 
     userUser = document.getElementById('loginUser').value;
     if (validateText(userUser)) {
         userPassword = document.getElementById('loginPassword').value;
@@ -38,16 +41,26 @@ async function loginAdmin() {
                 redirect: 'manual'
             };
 
-            fetch("http://localhost:3000/login", requestOptions)
+            fetch("http://localhost:3000/loginAdmin", requestOptions)
                 .then(response => response.text())
                 .then(result => {
-                    console.log(result)
-                    localStorage.removeItem("token");
-                    localStorage.setItem("tokenAdmin", result)
+
+
+                    temToken = result
+
                 })
                 .then(() => {
-                    alert('Bienvenido!!')
-                    window.location.href = "./admin.html";
+                    
+                    if (temToken.length > 34) {
+                        localStorage.removeItem("token");
+                        localStorage.setItem("tokenAdmin", temToken)
+                        console.log(temToken)
+                        alert('Bienvenido!!')
+                        window.location.href = "./admin.html";
+                    }
+                    else {
+                        alert('No pasas');
+                    }
                 })
                 .catch(error => { console.log('error', error) });
 

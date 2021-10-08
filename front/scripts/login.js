@@ -19,6 +19,8 @@ function validateText(valor) {
 
 
 async function login() {
+    let temToken 
+
     userUser = document.getElementById('loginUser').value;
     if (validateText(userUser)) {
         userPassword = document.getElementById('loginPassword').value;
@@ -43,13 +45,23 @@ async function login() {
             fetch("http://localhost:3000/login", requestOptions)
                 .then(response => response.text())
                 .then(result => {
-                    console.log(result)
-                    localStorage.removeItem("tokenAdmin");
-                    localStorage.setItem("token", result)
+
+
+                    temToken = result
+
                 })
                 .then(() => {
-                    alert('Bienvenido!!')
-                    window.location.href = "./shop.html";
+                    
+                    if (temToken.length > 34) {
+                        localStorage.removeItem("tokenAdmin");
+                        localStorage.setItem("token", temToken)
+                        console.log(temToken)
+                        alert('Bienvenido!!')
+                        window.location.href = "./shop.html";
+                    }
+                    else {
+                        alert('No pasas');
+                    }
                 })
                 .catch(error => { console.log('error', error) });
 
