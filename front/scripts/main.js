@@ -121,6 +121,15 @@ $(function () {
         $('.popup-overlay').height($(window).height());
         return false;
     });
+
+    $("#finalizar-Compra").click(function () {
+        console.log('hola')
+        $('#popup').fadeIn('slow');
+        $('.popup-overlay').fadeIn('slow');
+        $('.popup-overlay').height($(window).height());
+        return false;
+    });
+
     $('#close').on('click', function () {
         $('#popup').fadeOut('slow');
         $('.popup-overlay').fadeOut('slow');

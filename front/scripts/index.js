@@ -6,25 +6,25 @@ function getToken() {
 
 async function getCart() {
     let token = getToken()
-    if(token){
+    if (token) {
 
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + token);
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + token);
 
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'manual'
-    };
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'manual'
+        };
 
-    fetch("http://localhost:3000/cart", requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            carrito = JSON.parse(result)
-            console.log(carrito)
-            showCart()
-        })
-        .catch(error => console.log('error', error));
+        fetch("http://localhost:3000/cart", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                carrito = JSON.parse(result)
+                console.log(carrito)
+                showCart()
+            })
+            .catch(error => console.log('error', error));
     }
 }
 
@@ -53,11 +53,13 @@ async function showCart() {
             total += carrito[0][i]['price'] * carrito[0][i]['quantity']
         }
         totalhtml = document.getElementById('total-carrito');
+        totalhtml1 = document.getElementById('total-carrito1');
         totalhtml.textContent = `$${total.toFixed(2)}`
+        totalhtml1.textContent = `$${total.toFixed(2)}`
 
         const cajaCarrito = document.getElementById('productosCarrito')
         if (cajaCarrito) {
-            let mensaje = `<button class="btn btn-primary" onclick="saludo()">Finalizar Compra</button>`;
+            let mensaje = `<button id="finalizar-Compra" onclick="finalizarCompra()" class="btn btn-primary" >Finalizar Compra</button>`;
             let productoHTML = document.createElement('div');
             productoHTML.classList.add('contenedor-producto', 'center')
             productoHTML.innerHTML += mensaje;
@@ -208,6 +210,11 @@ async function eliminarProducto(id) {
 
 }
 
+function finalizarCompra(){
+    $('#popup').fadeIn('slow');
+    $('.popup-overlay').fadeIn('slow');
+    $('.popup-overlay').height($(window).height());
+}
 
 
 
@@ -216,3 +223,7 @@ function saludo() {
     console.log("Hi")
 }
 
+function compraFinalizada() {
+    alert('Su pedido esta en Camino')
+    window.location.href = "./index.html"
+}
